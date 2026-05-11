@@ -438,18 +438,18 @@
             };
 
             return (
-                <div className="min-h-screen bg-sky-100 font-sans p-4 sm:p-8 flex justify-center">
+                <div className="min-h-screen bg-sky-100 font-sans p-2 sm:p-4 flex justify-center">
                     <div className="max-w-3xl w-full">
                         
                         {/* Header */}
-                        <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-8 border-4 border-blue-400">
-                            <div className="bg-blue-400 p-6 text-center">
-                                <h1 className="text-3xl sm:text-4xl font-extrabold text-white drop-shadow-md flex flex-col sm:flex-row items-center justify-center gap-3">
-                                    <Award className="hidden sm:block w-10 h-10 text-yellow-300" />
+                        <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-6 border-4 border-blue-400">
+                            <div className="bg-blue-400 p-4 text-center">
+                                <h1 className="text-2xl sm:text-3xl font-extrabold text-white drop-shadow-md flex flex-col sm:flex-row items-center justify-center gap-2">
+                                    <Award className="hidden sm:block w-8 h-8 text-yellow-300" />
                                     <span>Học Từ Vựng Mỗi Ngày<br className="sm:hidden"/> cùng Dubai 2020</span>
-                                    <Award className="hidden sm:block w-10 h-10 text-yellow-300" />
+                                    <Award className="hidden sm:block w-8 h-8 text-yellow-300" />
                                 </h1>
-                                <p className="text-blue-100 mt-3 text-lg font-medium">
+                                <p className="text-blue-100 mt-2 text-base font-medium">
                                     Mỗi ngày bé chép 5 từ ra vở để ghi nhớ thật giỏi nhé!
                                     <br/>
                                     <a href="https://fb.com/dubaity.ca" target="_blank" rel="noopener noreferrer" className="inline-block mt-1 text-yellow-200 hover:text-white hover:underline transition-colors">
@@ -460,56 +460,56 @@
                         </div>
 
                         {/* Danh sách 5 từ */}
-                        <div className="space-y-6">
+                        <div className="space-y-3">
                             {dailyWords.map((item, index) => {
                                 return (
                                     <div 
                                         key={item.word + index} 
-                                        className="bg-white rounded-3xl p-6 sm:p-8 shadow-md transition-all duration-300 border-b-8 border-r-8 border-gray-200 hover:border-blue-300 hover:-translate-y-1 relative overflow-hidden"
+                                        className="bg-white rounded-3xl p-4 sm:p-5 shadow-sm transition-all duration-300 border-b-4 border-r-4 border-gray-200 hover:border-blue-300 hover:-translate-y-1 relative overflow-hidden"
                                     >
-                                        <div className="flex flex-col sm:flex-row gap-6 justify-between items-center relative z-10">
+                                        <div className="flex flex-col sm:flex-row gap-4 justify-between items-center relative z-10">
                                             
                                             {/* Cột thông tin từ vựng */}
-                                            <div className="flex flex-col gap-4 w-full sm:w-2/3">
+                                            <div className="flex flex-col gap-2 w-full sm:w-3/4">
                                                 
-                                                <div className="flex flex-wrap items-center gap-4">
-                                                    <div className="bg-orange-100 text-orange-600 font-bold text-xl rounded-full w-12 h-12 flex items-center justify-center border-2 border-orange-300 shrink-0">
+                                                <div className="flex flex-wrap items-center gap-3">
+                                                    <div className="bg-orange-100 text-orange-600 font-bold text-lg rounded-full w-10 h-10 flex items-center justify-center border-2 border-orange-300 shrink-0">
                                                         {index + 1}
                                                     </div>
-                                                    <h2 className="text-5xl font-black text-blue-600 tracking-wider">
+                                                    <h2 className="text-3xl sm:text-4xl font-black text-blue-600 tracking-wider">
                                                         {item.word}
                                                     </h2>
                                                     <button 
                                                         onClick={() => speakWord(item.word)}
-                                                        className="bg-yellow-300 hover:bg-yellow-400 p-3 rounded-full shadow-sm transition-transform hover:scale-110 shrink-0"
+                                                        className="bg-yellow-300 hover:bg-yellow-400 p-2 rounded-full shadow-sm transition-transform hover:scale-110 shrink-0"
                                                         title="Nghe phát âm"
                                                     >
-                                                        <Volume2 className="w-6 h-6 text-yellow-800" />
+                                                        <Volume2 className="w-5 h-5 text-yellow-800" />
                                                     </button>
                                                     
                                                     {item.isReview && (
-                                                        <div className="ml-auto bg-green-100 text-green-700 border-2 border-green-300 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 shadow-sm">
-                                                            <RefreshCw className="w-4 h-4" />
+                                                        <div className="ml-auto bg-green-100 text-green-700 border-2 border-green-300 px-2 py-0.5 rounded-full text-xs font-bold flex items-center gap-1 shadow-sm">
+                                                            <RefreshCw className="w-3 h-3" />
                                                             Từ ôn tập
                                                         </div>
                                                     )}
                                                 </div>
                                                 
-                                                <div className="flex flex-wrap items-center gap-3 text-lg mt-2">
-                                                    <span className="bg-gray-100 px-3 py-1 rounded-lg text-gray-700 font-mono font-medium tracking-wide border border-gray-200">
+                                                <div className="flex flex-wrap items-center gap-2 text-base mt-1">
+                                                    <span className="bg-gray-100 px-2 py-0.5 rounded-lg text-gray-700 font-mono font-medium tracking-wide border border-gray-200">
                                                         {item.phonetic}
                                                     </span>
                                                     <span className="text-gray-400 font-bold hidden sm:inline">•</span>
-                                                    <span className="text-2xl font-bold text-pink-500">
+                                                    <span className="text-xl font-bold text-pink-500">
                                                         {item.translation}
                                                     </span>
                                                 </div>
 
-                                                <div className="mt-4 bg-blue-50 p-4 rounded-xl border border-blue-100">
-                                                    <p className="text-gray-800 font-medium text-lg">
+                                                <div className="mt-2 bg-blue-50 p-3 rounded-xl border border-blue-100">
+                                                    <p className="text-gray-800 font-medium text-base">
                                                         🇬🇧 <span className="text-blue-700">{item.example}</span>
                                                     </p>
-                                                    <p className="text-gray-600 mt-1">
+                                                    <p className="text-gray-600 mt-0.5 text-sm sm:text-base">
                                                         🇻🇳 {item.exampleTrans}
                                                     </p>
                                                 </div>
@@ -517,14 +517,14 @@
                                             </div>
 
                                             {/* Icon minh họa to */}
-                                            <div className="hidden sm:flex w-1/3 justify-center items-center opacity-90 select-none drop-shadow-md transition-transform hover:scale-110">
-                                                <span className="text-[120px] leading-none">
+                                            <div className="hidden sm:flex w-1/4 justify-center items-center opacity-90 select-none drop-shadow-md transition-transform hover:scale-110">
+                                                <span className="text-[80px] leading-none">
                                                     {item.emoji}
                                                 </span>
                                             </div>
                                             
                                             {/* Icon mờ cho mobile */}
-                                            <div className="absolute right-[-10px] bottom-[-20px] text-[150px] opacity-[0.07] sm:hidden pointer-events-none select-none">
+                                            <div className="absolute right-[-5px] bottom-[-10px] text-[90px] opacity-[0.07] sm:hidden pointer-events-none select-none">
                                                 {item.emoji}
                                             </div>
 
@@ -535,29 +535,29 @@
                         </div>
 
                         {/* Nút thao tác thêm */}
-                        <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                        <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
                             <button 
                                 onClick={() => generateWords('daily')}
-                                className={`px-6 py-4 rounded-2xl font-bold text-lg shadow-md transition-all flex items-center justify-center gap-2 ${
+                                className={`px-5 py-3 rounded-2xl font-bold text-base shadow-sm transition-all flex items-center justify-center gap-2 ${
                                     mode === 'daily' ? 'bg-blue-600 text-white' : 'bg-white text-blue-600 hover:bg-blue-50'
                                 }`}
                             >
-                                <RefreshCw className="w-5 h-5" />
+                                <RefreshCw className="w-4 h-4" />
                                 5 Từ Hôm Nay
                             </button>
                             
                             <button 
                                 onClick={() => generateWords('random')}
-                                className={`px-6 py-4 rounded-2xl font-bold text-lg shadow-md transition-all flex items-center justify-center gap-2 ${
+                                className={`px-5 py-3 rounded-2xl font-bold text-base shadow-sm transition-all flex items-center justify-center gap-2 ${
                                     mode === 'random' ? 'bg-purple-600 text-white' : 'bg-white text-purple-600 hover:bg-purple-50'
                                 }`}
                             >
-                                <Sparkles className="w-5 h-5" />
+                                <Sparkles className="w-4 h-4" />
                                 Luyện tập từ khác
                             </button>
                         </div>
 
-                        <div className="mt-8 mb-12 text-center text-gray-500 text-sm font-medium">
+                        <div className="mt-4 mb-6 text-center text-gray-500 text-sm font-medium">
                             📝 Bé hãy chuẩn bị một cuốn vở thật đẹp để chép lại các từ vựng này nhé!
                         </div>
 
