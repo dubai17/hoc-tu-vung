@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Học Từ Vựng Mỗi Ngày cùng Dubai 2020</title>
+    
+    <!-- Tải thư viện Tailwind CSS để tạo giao diện -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tải thư viện React -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    
+    <!-- Tải thư viện Babel để chạy mã JSX trực tiếp trên trình duyệt -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        // ==========================================
+        // CÁC ICON (SVG) ĐƯỢC TÍCH HỢP TRỰC TIẾP 
+        // ==========================================
+        const Volume2 = ({ className }) => (
+            <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+        );
+        const Award = ({ className }) => (
+            <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
+        );
+        const Sparkles = ({ className }) => (
+            <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path><path d="M5 3v4"></path><path d="M19 17v4"></path><path d="M3 5h4"></path><path d="M17 19h4"></path></svg>
+        );
+        const RefreshCw = ({ className }) => (
+            <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path><path d="M3 3v5h5"></path></svg>
+        );
+
+        // ==========================================
+        // CƠ SỞ DỮ LIỆU TỪ VỰNG (BẢN MỞ RỘNG TỐI ĐA TRONG GIỚI HẠN)
+        // Hệ thống đã cập nhật 150 từ vựng với 13 chủ đề khác nhau
+        // ==========================================
+        const VOCABULARY_DB = [
+            // 1. Động vật (Animal)
+            { word: "dog", phonetic: "/dɒɡ/", translation: "con chó", example: "My dog is smart.", exampleTrans: "Chú chó của tôi rất thông minh.", topic: "animal", emoji: "🐶" },
+            { word: "cat", phonetic: "/kæt/", translation: "con mèo", example: "The cat is sleeping.", exampleTrans: "Con mèo đang ngủ.", topic: "animal", emoji: "🐱" },
+            { word: "bird", phonetic: "/bɜːd/", translation: "con chim", example: "The bird can fly.", exampleTrans: "Con chim có thể bay.", topic: "animal", emoji: "🐦" },
+            { word: "fish", phonetic: "/fɪʃ/", translation: "con cá", example: "I see a fish.", exampleTrans: "Mình thấy một chú cá.", topic: "animal", emoji: "🐟" },
+            { word: "elephant", phonetic: "/ˈelɪfənt/", translation: "con voi", example: "The elephant is big.", exampleTrans: "Con voi rất to.", topic: "animal", emoji: "🐘" },
+            { word: "monkey", phonetic: "/ˈmʌŋki/", translation: "con khỉ", example: "Monkeys like bananas.", exampleTrans: "Bầy khỉ thích ăn chuối.", topic: "animal", emoji: "🐒" },
+            { word: "tiger", phonetic: "/ˈtaɪɡə/", translation: "con hổ", example: "The tiger is strong.", exampleTrans: "Con hổ rất khỏe mạnh.", topic: "animal", emoji: "🐅" },
+            { word: "rabbit", phonetic: "/ˈræbɪt/", translation: "con thỏ", example: "Rabbits jump high.", exampleTrans: "Những chú thỏ nhảy rất cao.", topic: "animal", emoji: "🐇" },
+            { word: "bear", phonetic: "/beə/", translation: "con gấu", example: "The bear eats honey.", exampleTrans: "Con gấu đang ăn mật ong.", topic: "animal", emoji: "🐻" },
+            { word: "lion", phonetic: "/ˈlaɪən/", translation: "con sư tử", example: "The lion is the king.", exampleTrans: "Sư tử là vua của muôn loài.", topic: "animal", emoji: "🦁" },
+            { word: "cow", phonetic: "/kaʊ/", translation: "con bò", example: "The cow gives milk.", exampleTrans: "Con bò cho chúng ta sữa.", topic: "animal", emoji: "🐮" },
+            { word: "pig", phonetic: "/pɪɡ/", translation: "con lợn", example: "The pig is pink.", exampleTrans: "Con lợn có màu hồng.", topic: "animal", emoji: "🐷" },
+            { word: "horse", phonetic: "/hɔːs/", translation: "con ngựa", example: "I ride a horse.", exampleTrans: "Mình cưỡi một chú ngựa.", topic: "animal", emoji: "🐴" },
+            { word: "sheep", phonetic: "/ʃiːp/", translation: "con cừu", example: "The sheep is white.", exampleTrans: "Con cừu có màu trắng.", topic: "animal", emoji: "🐑" },
+            { word: "duck", phonetic: "/dʌk/", translation: "con vịt", example: "The duck is swimming.", exampleTrans: "Con vịt đang bơi.", topic: "animal", emoji: "🦆" },
+
+            // 2. Đồ ăn & Thức uống (Food)
+            { word: "apple", phonetic: "/ˈæpl/", translation: "quả táo", example: "I eat an apple.", exampleTrans: "Mình ăn một quả táo.", topic: "food", emoji: "🍎" },
+            { word: "banana", phonetic: "/bəˈnɑːnə/", translation: "quả chuối", example: "This banana is sweet.", exampleTrans: "Quả chuối này rất ngọt.", topic: "food", emoji: "🍌" },
+            { word: "orange", phonetic: "/ˈɒrɪndʒ/", translation: "quả cam", example: "I like orange juice.", exampleTrans: "Mình thích nước ép cam.", topic: "food", emoji: "🍊" },
+            { word: "water", phonetic: "/ˈwɔːtə/", translation: "nước", example: "Drink more water.", exampleTrans: "Hãy uống nhiều nước hơn.", topic: "food", emoji: "💧" },
+            { word: "milk", phonetic: "/mɪlk/", translation: "sữa", example: "Milk is good for you.", exampleTrans: "Sữa rất tốt cho bạn.", topic: "food", emoji: "🥛" },
+            { word: "bread", phonetic: "/bred/", translation: "bánh mì", example: "I have bread for breakfast.", exampleTrans: "Mình ăn bánh mì vào bữa sáng.", topic: "food", emoji: "🍞" },
+            { word: "egg", phonetic: "/eɡ/", translation: "quả trứng", example: "I eat an egg.", exampleTrans: "Mình ăn một quả trứng.", topic: "food", emoji: "🥚" },
+            { word: "cake", phonetic: "/keɪk/", translation: "bánh ngọt", example: "This cake is yummy.", exampleTrans: "Chiếc bánh này rất ngon.", topic: "food", emoji: "🍰" },
+            { word: "pizza", phonetic: "/ˈpiːtsə/", translation: "pizza", example: "We order a pizza.", exampleTrans: "Chúng mình gọi một chiếc pizza.", topic: "food", emoji: "🍕" },
+            { word: "rice", phonetic: "/raɪs/", translation: "cơm", example: "I eat rice every day.", exampleTrans: "Mình ăn cơm mỗi ngày.", topic: "food", emoji: "🍚" },
+            { word: "meat", phonetic: "/miːt/", translation: "thịt", example: "I eat meat for dinner.", exampleTrans: "Mình ăn thịt vào bữa tối.", topic: "food", emoji: "🥩" },
+            { word: "chicken", phonetic: "/ˈtʃɪkɪn/", translation: "thịt gà", example: "Fried chicken is tasty.", exampleTrans: "Gà rán rất ngon.", topic: "food", emoji: "🍗" },
+            { word: "soup", phonetic: "/suːp/", translation: "món súp", example: "The soup is hot.", exampleTrans: "Món súp này rất nóng.", topic: "food", emoji: "🥣" },
+            { word: "ice cream", phonetic: "/ˌaɪs ˈkriːm/", translation: "kem", example: "I love ice cream.", exampleTrans: "Mình rất thích ăn kem.", topic: "food", emoji: "🍦" },
+            { word: "candy", phonetic: "/ˈkændi/", translation: "kẹo", example: "Too much candy is bad.", exampleTrans: "Ăn quá nhiều kẹo là không tốt.", topic: "food", emoji: "🍬" },
+
+            // 3. Màu sắc (Color)
+            { word: "red", phonetic: "/red/", translation: "màu đỏ", example: "The apple is red.", exampleTrans: "Quả táo có màu đỏ.", topic: "color", emoji: "🔴" },
+            { word: "blue", phonetic: "/bluː/", translation: "màu xanh dương", example: "The sky is blue.", exampleTrans: "Bầu trời màu xanh dương.", topic: "color", emoji: "🔵" },
+            { word: "green", phonetic: "/ɡriːn/", translation: "màu xanh lá", example: "The grass is green.", exampleTrans: "Cỏ có màu xanh lá.", topic: "color", emoji: "🟢" },
+            { word: "yellow", phonetic: "/ˈjeləʊ/", translation: "màu vàng", example: "The sun is yellow.", exampleTrans: "Mặt trời có màu vàng.", topic: "color", emoji: "🟡" },
+            { word: "pink", phonetic: "/pɪŋk/", translation: "màu hồng", example: "I have a pink pen.", exampleTrans: "Mình có một chiếc bút màu hồng.", topic: "color", emoji: "🩷" },
+            { word: "black", phonetic: "/blæk/", translation: "màu đen", example: "The cat is black.", exampleTrans: "Con mèo có màu đen.", topic: "color", emoji: "⚫" },
+            { word: "white", phonetic: "/waɪt/", translation: "màu trắng", example: "Snow is white.", exampleTrans: "Tuyết có màu trắng.", topic: "color", emoji: "⚪" },
+            { word: "brown", phonetic: "/braʊn/", translation: "màu nâu", example: "The bear is brown.", exampleTrans: "Con gấu màu nâu.", topic: "color", emoji: "🟤" },
+            { word: "purple", phonetic: "/ˈpɜːpl/", translation: "màu tím", example: "This flower is purple.", exampleTrans: "Bông hoa này màu tím.", topic: "color", emoji: "🟣" },
+            { word: "orange", phonetic: "/ˈɒrɪndʒ/", translation: "màu cam", example: "My shirt is orange.", exampleTrans: "Áo sơ mi của mình màu cam.", topic: "color", emoji: "🟠" },
+
+            // 4. Gia đình & Mọi người (Family)
+            { word: "family", phonetic: "/ˈfæməli/", translation: "gia đình", example: "I love my family.", exampleTrans: "Mình yêu gia đình của mình.", topic: "family", emoji: "👨‍👩‍👧‍👦" },
+            { word: "mother", phonetic: "/ˈmʌðə/", translation: "mẹ", example: "My mother is kind.", exampleTrans: "Mẹ mình rất hiền.", topic: "family", emoji: "👩" },
+            { word: "father", phonetic: "/ˈfɑːðə/", translation: "bố", example: "My father is tall.", exampleTrans: "Bố mình rất cao.", topic: "family", emoji: "👨" },
+            { word: "brother", phonetic: "/ˈbrʌðə/", translation: "anh/em trai", example: "My brother plays soccer.", exampleTrans: "Anh trai mình chơi bóng đá.", topic: "family", emoji: "👦" },
+            { word: "sister", phonetic: "/ˈsɪstə/", translation: "chị/em gái", example: "My sister is cute.", exampleTrans: "Em gái mình rất đáng yêu.", topic: "family", emoji: "👧" },
+            { word: "baby", phonetic: "/ˈbeɪbi/", translation: "em bé", example: "The baby is crying.", exampleTrans: "Em bé đang khóc.", topic: "family", emoji: "👶" },
+            { word: "grandfather", phonetic: "/ˈɡrænˌfɑːðə/", translation: "ông", example: "My grandfather is old.", exampleTrans: "Ông của mình đã già.", topic: "family", emoji: "👴" },
+            { word: "grandmother", phonetic: "/ˈɡrænˌmʌðə/", translation: "bà", example: "My grandmother is nice.", exampleTrans: "Bà của mình rất tốt bụng.", topic: "family", emoji: "👵" },
+            { word: "friend", phonetic: "/frend/", translation: "bạn bè", example: "He is my best friend.", exampleTrans: "Cậu ấy là người bạn thân nhất của mình.", topic: "family", emoji: "🧑‍🤝‍🧑" },
+            { word: "child", phonetic: "/tʃaɪld/", translation: "trẻ em", example: "The child is playing.", exampleTrans: "Đứa trẻ đang chơi đùa.", topic: "family", emoji: "🧒" },
+
+            // 5. Trường học (School)
+            { word: "school", phonetic: "/skuːl/", translation: "trường học", example: "I go to school.", exampleTrans: "Mình đi đến trường.", topic: "school", emoji: "🏫" },
+            { word: "teacher", phonetic: "/ˈtiːtʃə/", translation: "giáo viên", example: "The teacher is reading.", exampleTrans: "Giáo viên đang đọc sách.", topic: "school", emoji: "👩‍🏫" },
+            { word: "student", phonetic: "/ˈstjuːdnt/", translation: "học sinh", example: "I am a student.", exampleTrans: "Mình là một học sinh.", topic: "school", emoji: "🎒" },
+            { word: "book", phonetic: "/bʊk/", translation: "quyển sách", example: "Open your book.", exampleTrans: "Hãy mở sách của bạn ra.", topic: "school", emoji: "📖" },
+            { word: "pen", phonetic: "/pen/", translation: "cái bút", example: "I have a blue pen.", exampleTrans: "Mình có một cái bút xanh.", topic: "school", emoji: "🖊️" },
+            { word: "pencil", phonetic: "/ˈpensl/", translation: "bút chì", example: "I draw with a pencil.", exampleTrans: "Mình vẽ bằng bút chì.", topic: "school", emoji: "✏️" },
+            { word: "eraser", phonetic: "/ɪˈreɪzə/", translation: "cục tẩy", example: "Can I borrow your eraser?", exampleTrans: "Mình mượn cục tẩy của bạn nhé?", topic: "school", emoji: "🧽" },
+            { word: "ruler", phonetic: "/ˈruːlə/", translation: "cái thước", example: "Use a ruler to draw a line.", exampleTrans: "Dùng thước để kẻ một đường.", topic: "school", emoji: "📏" },
+            { word: "desk", phonetic: "/desk/", translation: "bàn học", example: "Sit at your desk.", exampleTrans: "Hãy ngồi vào bàn học của bạn.", topic: "school", emoji: "🪑" },
+            { word: "bag", phonetic: "/bæɡ/", translation: "cặp sách", example: "My bag is heavy.", exampleTrans: "Cặp sách của mình rất nặng.", topic: "school", emoji: "🎒" },
+
+            // 6. Tính từ cơ bản (Adjective)
+            { word: "happy", phonetic: "/ˈhæpi/", translation: "vui vẻ", example: "I feel happy.", exampleTrans: "Mình cảm thấy vui.", topic: "adjective", emoji: "😄" },
+            { word: "sad", phonetic: "/sæd/", translation: "buồn", example: "Don't be sad.", exampleTrans: "Đừng buồn nhé.", topic: "adjective", emoji: "😢" },
+            { word: "big", phonetic: "/bɪɡ/", translation: "to lớn", example: "That is a big box.", exampleTrans: "Đó là một cái hộp to.", topic: "adjective", emoji: "🐘" },
+            { word: "small", phonetic: "/smɔːl/", translation: "nhỏ bé", example: "Look at the small bird.", exampleTrans: "Hãy nhìn chú chim nhỏ kia.", topic: "adjective", emoji: "🐜" },
+            { word: "fast", phonetic: "/fɑːst/", translation: "nhanh", example: "The car is fast.", exampleTrans: "Chiếc xe ô tô rất nhanh.", topic: "adjective", emoji: "🚀" },
+            { word: "slow", phonetic: "/sləʊ/", translation: "chậm", example: "The turtle is slow.", exampleTrans: "Con rùa thì chậm chạp.", topic: "adjective", emoji: "🐢" },
+            { word: "hot", phonetic: "/hɒt/", translation: "nóng", example: "The fire is hot.", exampleTrans: "Ngọn lửa rất nóng.", topic: "adjective", emoji: "🔥" },
+            { word: "cold", phonetic: "/kəʊld/", translation: "lạnh", example: "Ice is cold.", exampleTrans: "Nước đá rất lạnh.", topic: "adjective", emoji: "🧊" },
+            { word: "tall", phonetic: "/tɔːl/", translation: "cao", example: "The tree is tall.", exampleTrans: "Cái cây rất cao.", topic: "adjective", emoji: "🦒" },
+            { word: "short", phonetic: "/ʃɔːt/", translation: "ngắn, thấp", example: "My hair is short.", exampleTrans: "Tóc của mình ngắn.", topic: "adjective", emoji: "📏" },
+            { word: "good", phonetic: "/ɡʊd/", translation: "tốt, giỏi", example: "You are a good boy.", exampleTrans: "Con là một cậu bé ngoan.", topic: "adjective", emoji: "👍" },
+            { word: "bad", phonetic: "/bæd/", translation: "xấu, tồi", example: "That is a bad idea.", exampleTrans: "Đó là một ý kiến tồi.", topic: "adjective", emoji: "👎" },
+            { word: "new", phonetic: "/njuː/", translation: "mới", example: "I have a new toy.", exampleTrans: "Mình có một món đồ chơi mới.", topic: "adjective", emoji: "✨" },
+            { word: "old", phonetic: "/əʊld/", translation: "cũ, già", example: "My grandfather is old.", exampleTrans: "Ông của mình đã già.", topic: "adjective", emoji: "🕰️" },
+            { word: "beautiful", phonetic: "/ˈbjuːtɪfl/", translation: "xinh đẹp", example: "The flower is beautiful.", exampleTrans: "Bông hoa thật xinh đẹp.", topic: "adjective", emoji: "🌸" },
+
+            // 7. Cơ thể người (Body)
+            { word: "head", phonetic: "/hed/", translation: "cái đầu", example: "Nod your head.", exampleTrans: "Hãy gật đầu nào.", topic: "body", emoji: "🗣️" },
+            { word: "eye", phonetic: "/aɪ/", translation: "con mắt", example: "Close your eyes.", exampleTrans: "Hãy nhắm mắt lại.", topic: "body", emoji: "👁️" },
+            { word: "ear", phonetic: "/ɪə/", translation: "cái tai", example: "I hear with my ears.", exampleTrans: "Mình nghe bằng đôi tai.", topic: "body", emoji: "👂" },
+            { word: "nose", phonetic: "/nəʊz/", translation: "cái mũi", example: "Touch your nose.", exampleTrans: "Hãy chạm vào mũi của bạn.", topic: "body", emoji: "👃" },
+            { word: "mouth", phonetic: "/maʊθ/", translation: "cái miệng", example: "Open your mouth.", exampleTrans: "Hãy mở miệng ra.", topic: "body", emoji: "👄" },
+            { word: "hand", phonetic: "/hænd/", translation: "bàn tay", example: "Wash your hands.", exampleTrans: "Hãy rửa tay nhé.", topic: "body", emoji: "🖐️" },
+            { word: "foot", phonetic: "/fʊt/", translation: "bàn chân", example: "Stamp your feet.", exampleTrans: "Hãy dậm chân nào.", topic: "body", emoji: "🦶" },
+            { word: "arm", phonetic: "/ɑːm/", translation: "cánh tay", example: "Raise your arm.", exampleTrans: "Hãy giơ tay lên.", topic: "body", emoji: "💪" },
+            { word: "leg", phonetic: "/leɡ/", translation: "cẳng chân", example: "My legs are long.", exampleTrans: "Chân của mình rất dài.", topic: "body", emoji: "🦵" },
+            { word: "hair", phonetic: "/heə/", translation: "mái tóc", example: "Her hair is black.", exampleTrans: "Tóc cô ấy màu đen.", topic: "body", emoji: "💇‍♀️" },
+
+            // 8. Thiên nhiên (Nature)
+            { word: "sun", phonetic: "/sʌn/", translation: "mặt trời", example: "The sun is shining.", exampleTrans: "Mặt trời đang chiếu sáng.", topic: "nature", emoji: "☀️" },
+            { word: "moon", phonetic: "/muːn/", translation: "mặt trăng", example: "Look at the moon.", exampleTrans: "Hãy nhìn mặt trăng kìa.", topic: "nature", emoji: "🌙" },
+            { word: "star", phonetic: "/stɑː/", translation: "ngôi sao", example: "I see a star.", exampleTrans: "Mình thấy một ngôi sao.", topic: "nature", emoji: "⭐" },
+            { word: "sky", phonetic: "/skaɪ/", translation: "bầu trời", example: "The sky is blue.", exampleTrans: "Bầu trời màu xanh dương.", topic: "nature", emoji: "🌌" },
+            { word: "tree", phonetic: "/triː/", translation: "cái cây", example: "The tree is tall.", exampleTrans: "Cái cây rất cao.", topic: "nature", emoji: "🌳" },
+            { word: "flower", phonetic: "/ˈflaʊə/", translation: "bông hoa", example: "The flower smells good.", exampleTrans: "Bông hoa có mùi thơm.", topic: "nature", emoji: "🌸" },
+            { word: "rain", phonetic: "/reɪn/", translation: "cơn mưa", example: "It is raining.", exampleTrans: "Trời đang mưa.", topic: "nature", emoji: "🌧️" },
+            { word: "wind", phonetic: "/wɪnd/", translation: "gió", example: "The wind is cold.", exampleTrans: "Gió rất lạnh.", topic: "nature", emoji: "🌬️" },
+            { word: "cloud", phonetic: "/klaʊd/", translation: "đám mây", example: "The clouds are white.", exampleTrans: "Những đám mây màu trắng.", topic: "nature", emoji: "☁️" },
+            { word: "grass", phonetic: "/ɡrɑːs/", translation: "cây cỏ", example: "The grass is green.", exampleTrans: "Cỏ có màu xanh lá.", topic: "nature", emoji: "🌿" },
+
+            // 9. Quần áo (Clothes)
+            { word: "shirt", phonetic: "/ʃɜːt/", translation: "áo sơ mi", example: "I wear a shirt.", exampleTrans: "Mình mặc một chiếc áo sơ mi.", topic: "clothes", emoji: "👕" },
+            { word: "pants", phonetic: "/pænts/", translation: "quần dài", example: "My pants are blue.", exampleTrans: "Quần của mình màu xanh.", topic: "clothes", emoji: "👖" },
+            { word: "dress", phonetic: "/dres/", translation: "váy liền", example: "She wears a dress.", exampleTrans: "Cô ấy mặc một chiếc váy.", topic: "clothes", emoji: "👗" },
+            { word: "hat", phonetic: "/hæt/", translation: "cái mũ", example: "Put on your hat.", exampleTrans: "Hãy đội mũ vào.", topic: "clothes", emoji: "🧢" },
+            { word: "shoe", phonetic: "/ʃuː/", translation: "chiếc giày", example: "Where is my shoe?", exampleTrans: "Chiếc giày của mình ở đâu?", topic: "clothes", emoji: "👟" },
+            { word: "sock", phonetic: "/sɒk/", translation: "chiếc tất", example: "I need warm socks.", exampleTrans: "Mình cần đôi tất ấm.", topic: "clothes", emoji: "🧦" },
+            { word: "skirt", phonetic: "/skɜːt/", translation: "chân váy", example: "Her skirt is pink.", exampleTrans: "Chân váy của cô ấy màu hồng.", topic: "clothes", emoji: "🥻" },
+            { word: "jacket", phonetic: "/ˈdʒækɪt/", translation: "áo khoác", example: "It's cold, wear a jacket.", exampleTrans: "Trời lạnh, hãy mặc áo khoác.", topic: "clothes", emoji: "🧥" },
+            { word: "glasses", phonetic: "/ˈɡlɑːsɪz/", translation: "kính mắt", example: "I wear glasses.", exampleTrans: "Mình đeo kính.", topic: "clothes", emoji: "👓" },
+            { word: "watch", phonetic: "/wɒtʃ/", translation: "đồng hồ đeo tay", example: "Look at your watch.", exampleTrans: "Hãy nhìn đồng hồ của bạn.", topic: "clothes", emoji: "⌚" },
+
+            // 10. Hành động (Action)
+            { word: "run", phonetic: "/rʌn/", translation: "chạy", example: "I can run fast.", exampleTrans: "Mình có thể chạy nhanh.", topic: "action", emoji: "🏃‍♂️" },
+            { word: "walk", phonetic: "/wɔːk/", translation: "đi bộ", example: "Let's walk.", exampleTrans: "Hãy cùng đi bộ nào.", topic: "action", emoji: "🚶" },
+            { word: "jump", phonetic: "/dʒʌmp/", translation: "nhảy", example: "Jump up high.", exampleTrans: "Hãy nhảy lên cao.", topic: "action", emoji: "🦘" },
+            { word: "read", phonetic: "/riːd/", translation: "đọc", example: "I read a book.", exampleTrans: "Mình đọc một quyển sách.", topic: "action", emoji: "📖" },
+            { word: "write", phonetic: "/raɪt/", translation: "viết", example: "Write your name.", exampleTrans: "Hãy viết tên của bạn.", topic: "action", emoji: "✍️" },
+            { word: "eat", phonetic: "/iːt/", translation: "ăn", example: "I eat an apple.", exampleTrans: "Mình ăn một quả táo.", topic: "action", emoji: "🍽️" },
+            { word: "drink", phonetic: "/drɪŋk/", translation: "uống", example: "Drink some water.", exampleTrans: "Hãy uống chút nước.", topic: "action", emoji: "🚰" },
+            { word: "sleep", phonetic: "/sliːp/", translation: "ngủ", example: "Time to sleep.", exampleTrans: "Đến giờ đi ngủ rồi.", topic: "action", emoji: "😴" },
+            { word: "play", phonetic: "/pleɪ/", translation: "chơi đùa", example: "Let's play together.", exampleTrans: "Cùng chơi với nhau nhé.", topic: "action", emoji: "🎮" },
+            { word: "sing", phonetic: "/sɪŋ/", translation: "hát", example: "She can sing well.", exampleTrans: "Cô ấy hát rất hay.", topic: "action", emoji: "🎤" },
+            { word: "dance", phonetic: "/dɑːns/", translation: "nhảy múa", example: "We dance to the music.", exampleTrans: "Chúng mình nhảy theo điệu nhạc.", topic: "action", emoji: "💃" },
+            { word: "swim", phonetic: "/swɪm/", translation: "bơi lội", example: "Fish can swim.", exampleTrans: "Cá có thể bơi.", topic: "action", emoji: "🏊" },
+            { word: "draw", phonetic: "/drɔː/", translation: "vẽ", example: "I draw a picture.", exampleTrans: "Mình vẽ một bức tranh.", topic: "action", emoji: "🖍️" },
+            { word: "speak", phonetic: "/spiːk/", translation: "nói", example: "I speak English.", exampleTrans: "Mình nói tiếng Anh.", topic: "action", emoji: "🗣️" },
+            { word: "listen", phonetic: "/ˈlɪsn/", translation: "lắng nghe", example: "Listen to the teacher.", exampleTrans: "Hãy lắng nghe cô giáo.", topic: "action", emoji: "🎧" },
+
+            // 11. Ngôi nhà (Home)
+            { word: "house", phonetic: "/haʊs/", translation: "ngôi nhà", example: "My house is big.", exampleTrans: "Ngôi nhà của mình rất to.", topic: "home", emoji: "🏠" },
+            { word: "room", phonetic: "/ruːm/", translation: "căn phòng", example: "This is my room.", exampleTrans: "Đây là phòng của mình.", topic: "home", emoji: "🚪" },
+            { word: "door", phonetic: "/dɔː/", translation: "cửa ra vào", example: "Open the door.", exampleTrans: "Hãy mở cửa ra.", topic: "home", emoji: "🚪" },
+            { word: "window", phonetic: "/ˈwɪndəʊ/", translation: "cửa sổ", example: "Close the window.", exampleTrans: "Hãy đóng cửa sổ lại.", topic: "home", emoji: "🪟" },
+            { word: "bed", phonetic: "/bed/", translation: "cái giường", example: "I sleep in my bed.", exampleTrans: "Mình ngủ trên giường.", topic: "home", emoji: "🛏️" },
+            { word: "table", phonetic: "/ˈteɪbl/", translation: "cái bàn", example: "The book is on the table.", exampleTrans: "Quyển sách ở trên bàn.", topic: "home", emoji: "🍽️" },
+            { word: "chair", phonetic: "/tʃeə/", translation: "cái ghế", example: "Sit on the chair.", exampleTrans: "Hãy ngồi lên ghế.", topic: "home", emoji: "🪑" },
+            { word: "sofa", phonetic: "/ˈsəʊfə/", translation: "ghế sofa", example: "The sofa is soft.", exampleTrans: "Ghế sofa rất êm.", topic: "home", emoji: "🛋️" },
+            { word: "television", phonetic: "/ˈtelɪvɪʒn/", translation: "tivi", example: "We watch television.", exampleTrans: "Chúng mình xem tivi.", topic: "home", emoji: "📺" },
+            { word: "clock", phonetic: "/klɒk/", translation: "đồng hồ", example: "Look at the clock.", exampleTrans: "Hãy nhìn vào đồng hồ.", topic: "home", emoji: "🕰️" },
+
+            // 12. Phương tiện (Transport)
+            { word: "car", phonetic: "/kɑː/", translation: "ô tô", example: "I go by car.", exampleTrans: "Mình đi bằng ô tô.", topic: "transport", emoji: "🚗" },
+            { word: "bus", phonetic: "/bʌs/", translation: "xe buýt", example: "The bus is yellow.", exampleTrans: "Xe buýt có màu vàng.", topic: "transport", emoji: "🚌" },
+            { word: "train", phonetic: "/treɪn/", translation: "tàu hỏa", example: "The train is long.", exampleTrans: "Đoàn tàu rất dài.", topic: "transport", emoji: "🚂" },
+            { word: "plane", phonetic: "/pleɪn/", translation: "máy bay", example: "The plane is flying.", exampleTrans: "Máy bay đang bay.", topic: "transport", emoji: "✈️" },
+            { word: "boat", phonetic: "/bəʊt/", translation: "con thuyền", example: "The boat is on the river.", exampleTrans: "Con thuyền ở trên sông.", topic: "transport", emoji: "🛶" },
+            { word: "bike", phonetic: "/baɪk/", translation: "xe đạp", example: "I ride a bike.", exampleTrans: "Mình đi xe đạp.", topic: "transport", emoji: "🚲" },
+            { word: "ship", phonetic: "/ʃɪp/", translation: "tàu thủy", example: "The ship is huge.", exampleTrans: "Tàu thủy rất khổng lồ.", topic: "transport", emoji: "🚢" },
+            { word: "truck", phonetic: "/trʌk/", translation: "xe tải", example: "The truck is heavy.", exampleTrans: "Xe tải rất nặng.", topic: "transport", emoji: "🚚" },
+            { word: "taxi", phonetic: "/ˈtæksi/", translation: "xe taxi", example: "We take a taxi.", exampleTrans: "Chúng mình đi xe taxi.", topic: "transport", emoji: "🚕" },
+            { word: "motorcycle", phonetic: "/ˈməʊtəsaɪkl/", translation: "xe máy", example: "My dad has a motorcycle.", exampleTrans: "Bố mình có một chiếc xe máy.", topic: "transport", emoji: "🏍️" },
+
+            // 13. Nghề nghiệp (Job)
+            { word: "doctor", phonetic: "/ˈdɒktə/", translation: "bác sĩ", example: "The doctor helps me.", exampleTrans: "Bác sĩ giúp đỡ mình.", topic: "job", emoji: "👨‍⚕️" },
+            { word: "nurse", phonetic: "/nɜːs/", translation: "y tá", example: "The nurse is kind.", exampleTrans: "Cô y tá rất tốt bụng.", topic: "job", emoji: "👩‍⚕️" },
+            { word: "police", phonetic: "/pəˈliːs/", translation: "cảnh sát", example: "The police catches bad guys.", exampleTrans: "Cảnh sát bắt người xấu.", topic: "job", emoji: "👮" },
+            { word: "farmer", phonetic: "/ˈfɑːmə/", translation: "nông dân", example: "The farmer grows rice.", exampleTrans: "Bác nông dân trồng lúa.", topic: "job", emoji: "🧑‍🌾" },
+            { word: "pilot", phonetic: "/ˈpaɪlət/", translation: "phi công", example: "The pilot flies the plane.", exampleTrans: "Phi công lái máy bay.", topic: "job", emoji: "🧑‍✈️" },
+            { word: "driver", phonetic: "/ˈdraɪvə/", translation: "tài xế", example: "The driver drives the bus.", exampleTrans: "Bác tài xế lái xe buýt.", topic: "job", emoji: "🚕" },
+            { word: "singer", phonetic: "/ˈsɪŋə/", translation: "ca sĩ", example: "The singer sings a song.", exampleTrans: "Ca sĩ hát một bài hát.", topic: "job", emoji: "🧑‍🎤" },
+            { word: "cook", phonetic: "/kʊk/", translation: "đầu bếp", example: "The cook makes pizza.", exampleTrans: "Đầu bếp làm bánh pizza.", topic: "job", emoji: "🧑‍🍳" },
+            { word: "builder", phonetic: "/ˈbɪldə/", translation: "thợ xây", example: "The builder builds houses.", exampleTrans: "Thợ xây dựng những ngôi nhà.", topic: "job", emoji: "👷" },
+            { word: "dentist", phonetic: "/ˈdentɪst/", translation: "nha sĩ", example: "The dentist checks my teeth.", exampleTrans: "Nha sĩ kiểm tra răng cho mình.", topic: "job", emoji: "🦷" }
+             // Chủ đề 1: Động vật (Animals)
+{ word: "cat", phonetic: "/kæt/", translation: "con mèo", example: "The cat is sleeping.", exampleTrans: "Con mèo đang ngủ.", topic: "Động vật", emoji: "🐱" }
+{ word: "dog", phonetic: "/dɔːg/", translation: "con chó", example: "I love my dog.", exampleTrans: "Tôi yêu con chó của tôi.", topic: "Động vật", emoji: "🐶" }
+{ word: "bird", phonetic: "/bɜːrd/", translation: "con chim", example: "The bird is flying.", exampleTrans: "Con chim đang bay.", topic: "Động vật", emoji: "🐦" }
+{ word: "fish", phonetic: "/fɪʃ/", translation: "con cá", example: "The fish swims in the water.", exampleTrans: "Con cá bơi trong nước.", topic: "Động vật", emoji: "🐟" }
+{ word: "mouse", phonetic: "/maʊs/", translation: "con chuột", example: "The mouse is very small.", exampleTrans: "Con chuột rất nhỏ.", topic: "Động vật", emoji: "🐭" }
+{ word: "cow", phonetic: "/kaʊ/", translation: "con bò", example: "The cow eats grass.", exampleTrans: "Con bò ăn cỏ.", topic: "Động vật", emoji: "🐮" }
+{ word: "pig", phonetic: "/pɪg/", translation: "con lợn", example: "The pig is pink.", exampleTrans: "Con lợn màu hồng.", topic: "Động vật", emoji: "🐷" }
+{ word: "horse", phonetic: "/hɔːrs/", translation: "con ngựa", example: "He rides a horse.", exampleTrans: "Anh ấy cưỡi một con ngựa.", topic: "Động vật", emoji: "🐴" }
+{ word: "duck", phonetic: "/dʌk/", translation: "con vịt", example: "The duck says quack.", exampleTrans: "Con vịt kêu cạp cạp.", topic: "Động vật", emoji: "🦆" }
+{ word: "chicken", phonetic: "/ˈtʃɪkɪn/", translation: "con gà", example: "We have a chicken.", exampleTrans: "Chúng tôi có một con gà.", topic: "Động vật", emoji: "🐔" }
+
+// Chủ đề 2: Trái cây (Fruits)
+{ word: "apple", phonetic: "/ˈæpl/", translation: "quả táo", example: "This apple is sweet.", exampleTrans: "Quả táo này ngọt.", topic: "Trái cây", emoji: "🍎" }
+{ word: "banana", phonetic: "/bəˈnænə/", translation: "quả chuối", example: "Monkeys like bananas.", exampleTrans: "Khỉ thích chuối.", topic: "Trái cây", emoji: "🍌" }
+{ word: "orange", phonetic: "/ˈɔːrɪndʒ/", translation: "quả cam", example: "I drink orange juice.", exampleTrans: "Tôi uống nước cam.", topic: "Trái cây", emoji: "🍊" }
+{ word: "grape", phonetic: "/greɪp/", translation: "quả nho", example: "These grapes are green.", exampleTrans: "Những quả nho này màu xanh.", topic: "Trái cây", emoji: "🍇" }
+{ word: "mango", phonetic: "/ˈmæŋgoʊ/", translation: "quả xoài", example: "Mango is my favorite fruit.", exampleTrans: "Xoài là trái cây yêu thích của tôi.", topic: "Trái cây", emoji: "🥭" }
+{ word: "lemon", phonetic: "/ˈlemən/", translation: "quả chanh vàng", example: "The lemon is sour.", exampleTrans: "Quả chanh có vị chua.", topic: "Trái cây", emoji: "🍋" }
+{ word: "peach", phonetic: "/piːtʃ/", translation: "quả đào", example: "I eat a peach.", exampleTrans: "Tôi ăn một quả đào.", topic: "Trái cây", emoji: "🍑" }
+{ word: "pear", phonetic: "/per/", translation: "quả lê", example: "She buys a pear.", exampleTrans: "Cô ấy mua một quả lê.", topic: "Trái cây", emoji: "🍐" }
+{ word: "cherry", phonetic: "/ˈtʃeri/", translation: "quả anh đào", example: "The cherry is red.", exampleTrans: "Quả anh đào màu đỏ.", topic: "Trái cây", emoji: "🍒" }
+{ word: "watermelon", phonetic: "/ˈwɔːtərmelən/", translation: "quả dưa hấu", example: "Watermelon is big.", exampleTrans: "Quả dưa hấu thì to.", topic: "Trái cây", emoji: "🍉" }
+
+// Chủ đề 3: Màu sắc (Colors)
+{ word: "red", phonetic: "/red/", translation: "màu đỏ", example: "My car is red.", exampleTrans: "Xe ô tô của tôi màu đỏ.", topic: "Màu sắc", emoji: "🔴" }
+{ word: "blue", phonetic: "/bluː/", translation: "màu xanh dương", example: "The sky is blue.", exampleTrans: "Bầu trời màu xanh dương.", topic: "Màu sắc", emoji: "🔵" }
+{ word: "green", phonetic: "/griːn/", translation: "màu xanh lá", example: "The leaf is green.", exampleTrans: "Chiếc lá màu xanh lá.", topic: "Màu sắc", emoji: "🟢" }
+{ word: "yellow", phonetic: "/ˈjeloʊ/", translation: "màu vàng", example: "The sun is yellow.", exampleTrans: "Mặt trời màu vàng.", topic: "Màu sắc", emoji: "🟡" }
+{ word: "pink", phonetic: "/pɪŋk/", translation: "màu hồng", example: "She has a pink dress.", exampleTrans: "Cô ấy có một chiếc váy hồng.", topic: "Màu sắc", emoji: "🌸" }
+{ word: "purple", phonetic: "/ˈpɜːrpl/", translation: "màu tím", example: "I like purple flowers.", exampleTrans: "Tôi thích hoa màu tím.", topic: "Màu sắc", emoji: "🟣" }
+{ word: "black", phonetic: "/blæk/", translation: "màu đen", example: "The cat is black.", exampleTrans: "Con mèo màu đen.", topic: "Màu sắc", emoji: "⚫" }
+{ word: "white", phonetic: "/waɪt/", translation: "màu trắng", example: "Snow is white.", exampleTrans: "Tuyết màu trắng.", topic: "Màu sắc", emoji: "⚪" }
+{ word: "brown", phonetic: "/braʊn/", translation: "màu nâu", example: "The bear is brown.", exampleTrans: "Con gấu màu nâu.", topic: "Màu sắc", emoji: "🟤" }
+{ word: "gray", phonetic: "/greɪ/", translation: "màu xám", example: "The cloud is gray.", exampleTrans: "Đám mây màu xám.", topic: "Màu sắc", emoji: "🐘" }
+
+// Chủ đề 4: Gia đình (Family)
+{ word: "father", phonetic: "/ˈfɑːðər/", translation: "bố/ba", example: "My father is tall.", exampleTrans: "Bố tôi cao.", topic: "Gia đình", emoji: "👨" }
+{ word: "mother", phonetic: "/ˈmʌðər/", translation: "mẹ/má", example: "My mother is kind.", exampleTrans: "Mẹ tôi hiền lành.", topic: "Gia đình", emoji: "👩" }
+{ word: "brother", phonetic: "/ˈbrʌðər/", translation: "anh/em trai", example: "He is my brother.", exampleTrans: "Anh ấy là anh trai tôi.", topic: "Gia đình", emoji: "👦" }
+{ word: "sister", phonetic: "/ˈsɪstər/", translation: "chị/em gái", example: "I have one sister.", exampleTrans: "Tôi có một người chị gái.", topic: "Gia đình", emoji: "👧" }
+{ word: "baby", phonetic: "/ˈbeɪbi/", translation: "em bé", example: "The baby is crying.", exampleTrans: "Em bé đang khóc.", topic: "Gia đình", emoji: "👶" }
+{ word: "grandfather", phonetic: "/ˈgrændfɑːðər/", translation: "ông", example: "My grandfather is old.", exampleTrans: "Ông tôi đã già.", topic: "Gia đình", emoji: "👴" }
+{ word: "grandmother", phonetic: "/ˈgrændmʌðər/", translation: "bà", example: "My grandmother cooks well.", exampleTrans: "Bà tôi nấu ăn ngon.", topic: "Gia đình", emoji: "👵" }
+{ word: "uncle", phonetic: "/ˈʌŋkl/", translation: "chú/bác trai", example: "My uncle is a doctor.", exampleTrans: "Chú tôi là bác sĩ.", topic: "Gia đình", emoji: "👨‍⚕️" }
+{ word: "aunt", phonetic: "/ænt/", translation: "cô/dì/bác gái", example: "My aunt lives here.", exampleTrans: "Dì tôi sống ở đây.", topic: "Gia đình", emoji: "👩‍🦰" }
+{ word: "cousin", phonetic: "/ˈkʌzn/", translation: "anh chị em họ", example: "We play with our cousin.", exampleTrans: "Chúng tôi chơi với anh em họ.", topic: "Gia đình", emoji: "🧒" }
+
+// Chủ đề 5: Cơ thể (Body Parts)
+{ word: "head", phonetic: "/hed/", translation: "cái đầu", example: "Nod your head.", exampleTrans: "Hãy gật đầu.", topic: "Cơ thể", emoji: "🗣️" }
+{ word: "eye", phonetic: "/aɪ/", translation: "con mắt", example: "Close your eyes.", exampleTrans: "Nhắm mắt lại.", topic: "Cơ thể", emoji: "👁️" }
+{ word: "ear", phonetic: "/ɪr/", translation: "cái tai", example: "I hear with my ears.", exampleTrans: "Tôi nghe bằng tai.", topic: "Cơ thể", emoji: "👂" }
+{ word: "nose", phonetic: "/noʊz/", translation: "cái mũi", example: "Touch your nose.", exampleTrans: "Chạm vào mũi của bạn.", topic: "Cơ thể", emoji: "👃" }
+{ word: "mouth", phonetic: "/maʊθ/", translation: "cái miệng", example: "Open your mouth.", exampleTrans: "Há miệng ra.", topic: "Cơ thể", emoji: "👄" }
+{ word: "hand", phonetic: "/hænd/", translation: "bàn tay", example: "Wash your hands.", exampleTrans: "Hãy rửa tay.", topic: "Cơ thể", emoji: "🖐️" }
+{ word: "arm", phonetic: "/ɑːrm/", translation: "cánh tay", example: "He has strong arms.", exampleTrans: "Anh ấy có cánh tay khỏe.", topic: "Cơ thể", emoji: "💪" }
+{ word: "leg", phonetic: "/leg/", translation: "cái chân", example: "My legs are tired.", exampleTrans: "Chân tôi bị mỏi.", topic: "Cơ thể", emoji: "🦵" }
+{ word: "foot", phonetic: "/fʊt/", translation: "bàn chân", example: "I have two feet.", exampleTrans: "Tôi có hai bàn chân.", topic: "Cơ thể", emoji: "🦶" }
+{ word: "hair", phonetic: "/her/", translation: "tóc", example: "Her hair is long.", exampleTrans: "Tóc cô ấy dài.", topic: "Cơ thể", emoji: "💇‍♀️" }
+
+// Chủ đề 6: Thức ăn & Đồ uống (Food & Drinks)
+{ word: "bread", phonetic: "/bred/", translation: "bánh mì", example: "I eat bread for breakfast.", exampleTrans: "Tôi ăn bánh mì vào bữa sáng.", topic: "Thức ăn", emoji: "🍞" }
+{ word: "rice", phonetic: "/raɪs/", translation: "gạo/cơm", example: "We eat rice every day.", exampleTrans: "Chúng tôi ăn cơm mỗi ngày.", topic: "Thức ăn", emoji: "🍚" }
+{ word: "egg", phonetic: "/eg/", translation: "quả trứng", example: "The hen lays an egg.", exampleTrans: "Gà mái đẻ một quả trứng.", topic: "Thức ăn", emoji: "🥚" }
+{ word: "milk", phonetic: "/mɪlk/", translation: "sữa", example: "Drink your milk.", exampleTrans: "Hãy uống sữa đi.", topic: "Thức ăn", emoji: "🥛" }
+{ word: "cheese", phonetic: "/tʃiːz/", translation: "phô mai", example: "Mice like cheese.", exampleTrans: "Chuột thích phô mai.", topic: "Thức ăn", emoji: "🧀" }
+{ word: "meat", phonetic: "/miːt/", translation: "thịt", example: "I don't eat meat.", exampleTrans: "Tôi không ăn thịt.", topic: "Thức ăn", emoji: "🥩" }
+{ word: "soup", phonetic: "/suːp/", translation: "món súp/canh", example: "The soup is hot.", exampleTrans: "Món súp đang nóng.", topic: "Thức ăn", emoji: "🥣" }
+{ word: "cake", phonetic: "/keɪk/", translation: "bánh ngọt", example: "Happy birthday cake!", exampleTrans: "Bánh sinh nhật vui vẻ!", topic: "Thức ăn", emoji: "🍰" }
+{ word: "pizza", phonetic: "/ˈpiːtsə/", translation: "bánh pizza", example: "Let's order a pizza.", exampleTrans: "Cùng gọi pizza nhé.", topic: "Thức ăn", emoji: "🍕" }
+{ word: "water", phonetic: "/ˈwɔːtər/", translation: "nước", example: "I need some water.", exampleTrans: "Tôi cần một chút nước.", topic: "Thức ăn", emoji: "💧" }
+
+// Chủ đề 7: Trường học (School)
+{ word: "book", phonetic: "/bʊk/", translation: "quyển sách", example: "Read a book.", exampleTrans: "Hãy đọc sách.", topic: "Trường học", emoji: "📖" }
+{ word: "pen", phonetic: "/pen/", translation: "cái bút máy", example: "Write with a pen.", exampleTrans: "Viết bằng bút máy.", topic: "Trường học", emoji: "🖊️" }
+{ word: "pencil", phonetic: "/ˈpensl/", translation: "bút chì", example: "I have a yellow pencil.", exampleTrans: "Tôi có một cây bút chì vàng.", topic: "Trường học", emoji: "✏️" }
+{ word: "bag", phonetic: "/bæg/", translation: "cái cặp/túi", example: "Put it in your bag.", exampleTrans: "Bỏ nó vào cặp của bạn.", topic: "Trường học", emoji: "🎒" }
+{ word: "desk", phonetic: "/desk/", translation: "bàn học", example: "Sit at your desk.", exampleTrans: "Ngồi vào bàn học của bạn.", topic: "Trường học", emoji: "🪑" }
+{ word: "chair", phonetic: "/tʃer/", translation: "cái ghế", example: "The chair is wooden.", exampleTrans: "Cái ghế làm bằng gỗ.", topic: "Trường học", emoji: "🪑" }
+{ word: "eraser", phonetic: "/ɪˈreɪsər/", translation: "cục tẩy", example: "Use an eraser.", exampleTrans: "Hãy dùng cục tẩy.", topic: "Trường học", emoji: "🧽" }
+{ word: "ruler", phonetic: "/ˈruːlər/", translation: "cái thước kẻ", example: "Draw a line with a ruler.", exampleTrans: "Kẻ một đường bằng thước.", topic: "Trường học", emoji: "📏" }
+{ word: "teacher", phonetic: "/ˈtiːtʃər/", translation: "giáo viên", example: "Listen to the teacher.", exampleTrans: "Hãy lắng nghe giáo viên.", topic: "Trường học", emoji: "👩‍🏫" }
+{ word: "school", phonetic: "/skuːl/", translation: "trường học", example: "I go to school.", exampleTrans: "Tôi đi đến trường.", topic: "Trường học", emoji: "🏫" }
+
+// Chủ đề 8: Quần áo (Clothes)
+{ word: "shirt", phonetic: "/ʃɜːrt/", translation: "áo sơ mi", example: "He wears a white shirt.", exampleTrans: "Anh ấy mặc áo sơ mi trắng.", topic: "Quần áo", emoji: "👕" }
+{ word: "pants", phonetic: "/pænts/", translation: "quần dài", example: "These pants are too long.", exampleTrans: "Cái quần này dài quá.", topic: "Quần áo", emoji: "👖" }
+{ word: "dress", phonetic: "/dres/", translation: "cái váy (liền thân)", example: "She has a pretty dress.", exampleTrans: "Cô ấy có chiếc váy đẹp.", topic: "Quần áo", emoji: "👗" }
+{ word: "skirt", phonetic: "/skɜːrt/", translation: "chân váy", example: "The skirt is short.", exampleTrans: "Chân váy thì ngắn.", topic: "Quần áo", emoji: "🥻" }
+{ word: "hat", phonetic: "/hæt/", translation: "cái mũ", example: "Put on your hat.", exampleTrans: "Đội mũ vào nhé.", topic: "Quần áo", emoji: "🧢" }
+{ word: "shoe", phonetic: "/ʃuː/", translation: "chiếc giày", example: "I lost my shoe.", exampleTrans: "Tôi làm mất một chiếc giày.", topic: "Quần áo", emoji: "👟" }
+{ word: "sock", phonetic: "/sɑːk/", translation: "chiếc tất", example: "Where is my left sock?", exampleTrans: "Chiếc tất trái của tôi đâu?", topic: "Quần áo", emoji: "🧦" }
+{ word: "coat", phonetic: "/koʊt/", translation: "áo khoác", example: "It is cold, wear a coat.", exampleTrans: "Trời lạnh, hãy mặc áo khoác.", topic: "Quần áo", emoji: "🧥" }
+{ word: "glasses", phonetic: "/ˈglæsɪz/", translation: "kính mắt", example: "He wears glasses.", exampleTrans: "Anh ấy đeo kính.", topic: "Quần áo", emoji: "👓" }
+{ word: "ring", phonetic: "/rɪŋ/", translation: "chiếc nhẫn", example: "A gold ring.", exampleTrans: "Một chiếc nhẫn vàng.", topic: "Quần áo", emoji: "💍" }
+
+// Chủ đề 9: Thiên nhiên (Nature)
+{ word: "sun", phonetic: "/sʌn/", translation: "mặt trời", example: "The sun is shining.", exampleTrans: "Mặt trời đang chiếu sáng.", topic: "Thiên nhiên", emoji: "☀️" }
+{ word: "moon", phonetic: "/muːn/", translation: "mặt trăng", example: "Look at the moon.", exampleTrans: "Hãy nhìn mặt trăng kìa.", topic: "Thiên nhiên", emoji: "🌙" }
+{ word: "star", phonetic: "/stɑːr/", translation: "ngôi sao", example: "I see a shooting star.", exampleTrans: "Tôi thấy một ngôi sao băng.", topic: "Thiên nhiên", emoji: "⭐" }
+{ word: "sky", phonetic: "/skaɪ/", translation: "bầu trời", example: "The sky is clear.", exampleTrans: "Bầu trời trong xanh.", topic: "Thiên nhiên", emoji: "🌌" }
+{ word: "tree", phonetic: "/triː/", translation: "cái cây", example: "The bird is on the tree.", exampleTrans: "Con chim ở trên cây.", topic: "Thiên nhiên", emoji: "🌳" }
+{ word: "flower", phonetic: "/ˈflaʊər/", translation: "bông hoa", example: "This flower smells good.", exampleTrans: "Bông hoa này có mùi thơm.", topic: "Thiên nhiên", emoji: "🌻" }
+{ word: "grass", phonetic: "/græs/", translation: "bãi cỏ", example: "Don't walk on the grass.", exampleTrans: "Đừng dẫm lên cỏ.", topic: "Thiên nhiên", emoji: "🌿" }
+{ word: "cloud", phonetic: "/klaʊd/", translation: "đám mây", example: "Look at that cloud.", exampleTrans: "Nhìn đám mây kia kìa.", topic: "Thiên nhiên", emoji: "☁️" }
+{ word: "rain", phonetic: "/reɪn/", translation: "cơn mưa", example: "It is going to rain.", exampleTrans: "Trời sắp mưa rồi.", topic: "Thiên nhiên", emoji: "🌧️" }
+{ word: "snow", phonetic: "/snoʊ/", translation: "tuyết", example: "Kids love playing in the snow.", exampleTrans: "Trẻ em thích chơi dưới tuyết.", topic: "Thiên nhiên", emoji: "❄️" }
+
+// Chủ đề 10: Đồ chơi (Toys)
+{ word: "doll", phonetic: "/dɑːl/", translation: "búp bê", example: "She plays with her doll.", exampleTrans: "Cô bé chơi với búp bê.", topic: "Đồ chơi", emoji: "🎎" }
+{ word: "ball", phonetic: "/bɔːl/", translation: "quả bóng", example: "Kick the ball.", exampleTrans: "Hãy đá quả bóng.", topic: "Đồ chơi", emoji: "⚽" }
+{ word: "car", phonetic: "/kɑːr/", translation: "ô tô đồ chơi", example: "He has a toy car.", exampleTrans: "Cậu bé có một chiếc ô tô đồ chơi.", topic: "Đồ chơi", emoji: "🚗" }
+{ word: "train", phonetic: "/treɪn/", translation: "tàu hỏa", example: "The train goes choo-choo.", exampleTrans: "Tàu hỏa chạy xình xịch.", topic: "Đồ chơi", emoji: "🚂" }
+{ word: "kite", phonetic: "/kaɪt/", translation: "cái diều", example: "Let's fly a kite.", exampleTrans: "Cùng đi thả diều nào.", topic: "Đồ chơi", emoji: "🪁" }
+{ word: "block", phonetic: "/blɑːk/", translation: "khối xếp hình", example: "Build with blocks.", exampleTrans: "Xếp hình bằng các khối gỗ.", topic: "Đồ chơi", emoji: "🧱" }
+{ word: "bear", phonetic: "/ber/", translation: "gấu bông", example: "My teddy bear is soft.", exampleTrans: "Gấu bông của tôi rất mềm.", topic: "Đồ chơi", emoji: "🧸" }
+{ word: "robot", phonetic: "/ˈroʊbɑːt/", translation: "người máy", example: "The robot can walk.", exampleTrans: "Người máy có thể đi lại.", topic: "Đồ chơi", emoji: "🤖" }
+{ word: "puzzle", phonetic: "/ˈpʌzl/", translation: "trò ghép hình", example: "Solve the puzzle.", exampleTrans: "Hãy giải bức tranh ghép hình.", topic: "Đồ chơi", emoji: "🧩" }
+{ word: "boat", phonetic: "/boʊt/", translation: "con thuyền", example: "The boat is on the water.", exampleTrans: "Con thuyền ở trên mặt nước.", topic: "Đồ chơi", emoji: "⛵" } 
+        ];
+
+        // Hàm tạo số ngẫu nhiên có hạt giống (seed) để giữ nguyên kết quả trong cùng 1 ngày
+        function mulberry32(a) {
+            return function() {
+                var t = a += 0x6D2B79F5;
+                t = Math.imul(t ^ t >>> 15, t | 1);
+                t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+                return ((t ^ t >>> 14) >>> 0) / 4294967296;
+            }
+        }
+
+        function VocabularyApp() {
+            const [dailyWords, setDailyWords] = useState([]);
+            const [mode, setMode] = useState('daily');
+
+            useEffect(() => {
+                generateWords('daily');
+            }, []);
+
+            const topics = [...new Set(VOCABULARY_DB.map(w => w.topic))];
+
+            const getWordsByTopicShuffled = (topic, seed) => {
+                let randomFunc = mulberry32(seed);
+                let words = VOCABULARY_DB.filter(w => w.topic === topic);
+                for (let i = words.length - 1; i > 0; i--) {
+                    const j = Math.floor(randomFunc() * (i + 1));
+                    [words[i], words[j]] = [words[j], words[i]];
+                }
+                return words;
+            };
+
+            const generateWords = (generationMode) => {
+                // ========================================================
+                // THUẬT TOÁN RANDOM MỚI: 5 TỪ KHÁC HOÀN TOÀN TỪ ĐANG CÓ TRÊN MÀN HÌNH
+                // ========================================================
+                if (generationMode === 'random') {
+                    // 1. Lấy danh sách các từ hiện đang có trên màn hình
+                    const currentDisplayedWords = dailyWords.map(item => item.word);
+                    
+                    // 2. Lọc ra danh sách từ mới (Bỏ qua các từ đang hiện trên màn hình)
+                    let availableWords = VOCABULARY_DB.filter(w => !currentDisplayedWords.includes(w.word));
+                    
+                    // 3. Xáo trộn ngẫu nhiên toàn bộ danh sách vừa lọc
+                    for (let i = availableWords.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [availableWords[i], availableWords[j]] = [availableWords[j], availableWords[i]];
+                    }
+                    
+                    // 4. Bốc đúng 5 từ đầu tiên
+                    setDailyWords(availableWords.slice(0, 5).map(w => ({ ...w, isReview: false })));
+                    setMode('random');
+                    return;
+                }
+
+                // ========================================================
+                // THUẬT TOÁN DAILY: GIỮ NGUYÊN (THEO CHỦ ĐỀ VÀ ÔN TẬP)
+                // ========================================================
+                const today = new Date();
+                const todaySeed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+                const randomToday = mulberry32(todaySeed);
+                
+                const todayTopicIdx = Math.floor(randomToday() * topics.length);
+                const todayTopic = topics[todayTopicIdx];
+                const shuffledToday = getWordsByTopicShuffled(todayTopic, todaySeed);
+
+                const isReviewDay = today.getDate() % 2 === 0;
+
+                if (!isReviewDay) {
+                    setDailyWords(shuffledToday.slice(0, 5).map(w => ({ ...w, isReview: false })));
+                } else {
+                    const yesterday = new Date(today);
+                    yesterday.setDate(yesterday.getDate() - 1);
+                    const yesterdaySeed = yesterday.getFullYear() * 10000 + (yesterday.getMonth() + 1) * 100 + yesterday.getDate();
+                    const randomYesterday = mulberry32(yesterdaySeed);
+                    
+                    const yesterdayTopicIdx = Math.floor(randomYesterday() * topics.length);
+                    const yesterdayTopic = topics[yesterdayTopicIdx];
+                    const shuffledYesterday = getWordsByTopicShuffled(yesterdayTopic, yesterdaySeed);
+                    const yesterdayWords = shuffledYesterday.slice(0, 5);
+
+                    const reviewIndex = todaySeed % 5; 
+                    const reviewWord = { ...yesterdayWords[reviewIndex], isReview: true };
+
+                    let newWords = [];
+                    for (let w of shuffledToday) {
+                        if (w.word !== reviewWord.word) {
+                            newWords.push({ ...w, isReview: false });
+                            if (newWords.length === 4) break;
+                        }
+                    }
+
+                    let combined = [reviewWord, ...newWords];
+                    const swapIdx = todaySeed % 5;
+                    [combined[0], combined[swapIdx]] = [combined[swapIdx], combined[0]];
+
+                    setDailyWords(combined);
+                }
+                setMode('daily');
+            };
+
+            const speakWord = (text) => {
+                if ('speechSynthesis' in window) {
+                    const utterance = new SpeechSynthesisUtterance(text);
+                    utterance.lang = 'en-US';
+                    utterance.rate = 0.85; 
+                    window.speechSynthesis.speak(utterance);
+                } else {
+                    alert("Trình duyệt của bạn không hỗ trợ tính năng đọc âm thanh.");
+                }
+            };
+
+            return (
+                <div className="min-h-screen bg-sky-100 font-sans p-4 sm:p-8 flex justify-center">
+                    <div className="max-w-3xl w-full">
+                        
+                        {/* Header */}
+                        <div className="bg-white rounded-3xl shadow-xl overflow-hidden mb-8 border-4 border-blue-400">
+                            <div className="bg-blue-400 p-6 text-center">
+                                <h1 className="text-3xl sm:text-4xl font-extrabold text-white drop-shadow-md flex flex-col sm:flex-row items-center justify-center gap-3">
+                                    <Award className="hidden sm:block w-10 h-10 text-yellow-300" />
+                                    <span>Học Từ Vựng Mỗi Ngày<br className="sm:hidden"/> cùng Dubai 2020</span>
+                                    <Award className="hidden sm:block w-10 h-10 text-yellow-300" />
+                                </h1>
+                                <p className="text-blue-100 mt-3 text-lg font-medium">
+                                    Mỗi ngày bé chép 5 từ ra vở để ghi nhớ thật giỏi nhé!
+                                    <br/>
+                                    <a href="https://fb.com/dubaity.ca" target="_blank" rel="noopener noreferrer" className="inline-block mt-1 text-yellow-200 hover:text-white hover:underline transition-colors">
+                                        fb.com/dubaity.ca
+                                    </a>
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Danh sách 5 từ */}
+                        <div className="space-y-6">
+                            {dailyWords.map((item, index) => {
+                                return (
+                                    <div 
+                                        key={item.word + index} 
+                                        className="bg-white rounded-3xl p-6 sm:p-8 shadow-md transition-all duration-300 border-b-8 border-r-8 border-gray-200 hover:border-blue-300 hover:-translate-y-1 relative overflow-hidden"
+                                    >
+                                        <div className="flex flex-col sm:flex-row gap-6 justify-between items-center relative z-10">
+                                            
+                                            {/* Cột thông tin từ vựng */}
+                                            <div className="flex flex-col gap-4 w-full sm:w-2/3">
+                                                
+                                                <div className="flex flex-wrap items-center gap-4">
+                                                    <div className="bg-orange-100 text-orange-600 font-bold text-xl rounded-full w-12 h-12 flex items-center justify-center border-2 border-orange-300 shrink-0">
+                                                        {index + 1}
+                                                    </div>
+                                                    <h2 className="text-5xl font-black text-blue-600 tracking-wider">
+                                                        {item.word}
+                                                    </h2>
+                                                    <button 
+                                                        onClick={() => speakWord(item.word)}
+                                                        className="bg-yellow-300 hover:bg-yellow-400 p-3 rounded-full shadow-sm transition-transform hover:scale-110 shrink-0"
+                                                        title="Nghe phát âm"
+                                                    >
+                                                        <Volume2 className="w-6 h-6 text-yellow-800" />
+                                                    </button>
+                                                    
+                                                    {item.isReview && (
+                                                        <div className="ml-auto bg-green-100 text-green-700 border-2 border-green-300 px-3 py-1 rounded-full text-sm font-bold flex items-center gap-1 shadow-sm">
+                                                            <RefreshCw className="w-4 h-4" />
+                                                            Từ ôn tập
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                
+                                                <div className="flex flex-wrap items-center gap-3 text-lg mt-2">
+                                                    <span className="bg-gray-100 px-3 py-1 rounded-lg text-gray-700 font-mono font-medium tracking-wide border border-gray-200">
+                                                        {item.phonetic}
+                                                    </span>
+                                                    <span className="text-gray-400 font-bold hidden sm:inline">•</span>
+                                                    <span className="text-2xl font-bold text-pink-500">
+                                                        {item.translation}
+                                                    </span>
+                                                </div>
+
+                                                <div className="mt-4 bg-blue-50 p-4 rounded-xl border border-blue-100">
+                                                    <p className="text-gray-800 font-medium text-lg">
+                                                        🇬🇧 <span className="text-blue-700">{item.example}</span>
+                                                    </p>
+                                                    <p className="text-gray-600 mt-1">
+                                                        🇻🇳 {item.exampleTrans}
+                                                    </p>
+                                                </div>
+
+                                            </div>
+
+                                            {/* Icon minh họa to */}
+                                            <div className="hidden sm:flex w-1/3 justify-center items-center opacity-90 select-none drop-shadow-md transition-transform hover:scale-110">
+                                                <span className="text-[120px] leading-none">
+                                                    {item.emoji}
+                                                </span>
+                                            </div>
+                                            
+                                            {/* Icon mờ cho mobile */}
+                                            <div className="absolute right-[-10px] bottom-[-20px] text-[150px] opacity-[0.07] sm:hidden pointer-events-none select-none">
+                                                {item.emoji}
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                );
+                            })}
+                        </div>
+
+                        {/* Nút thao tác thêm */}
+                        <div className="mt-10 flex flex-col sm:flex-row justify-center gap-4">
+                            <button 
+                                onClick={() => generateWords('daily')}
+                                className={`px-6 py-4 rounded-2xl font-bold text-lg shadow-md transition-all flex items-center justify-center gap-2 ${
+                                    mode === 'daily' ? 'bg-blue-600 text-white' : 'bg-white text-blue-600 hover:bg-blue-50'
+                                }`}
+                            >
+                                <RefreshCw className="w-5 h-5" />
+                                5 Từ Hôm Nay
+                            </button>
+                            
+                            <button 
+                                onClick={() => generateWords('random')}
+                                className={`px-6 py-4 rounded-2xl font-bold text-lg shadow-md transition-all flex items-center justify-center gap-2 ${
+                                    mode === 'random' ? 'bg-purple-600 text-white' : 'bg-white text-purple-600 hover:bg-purple-50'
+                                }`}
+                            >
+                                <Sparkles className="w-5 h-5" />
+                                Luyện tập từ khác
+                            </button>
+                        </div>
+
+                        <div className="mt-8 mb-12 text-center text-gray-500 text-sm font-medium">
+                            📝 Bé hãy chuẩn bị một cuốn vở thật đẹp để chép lại các từ vựng này nhé!
+                        </div>
+
+                    </div>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<VocabularyApp />);
+    </script>
+</body>
+</html>
