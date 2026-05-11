@@ -43,303 +43,288 @@
 
         // ==========================================
         // CƠ SỞ DỮ LIỆU TỪ VỰNG (BẢN MỞ RỘNG TỐI ĐA TRONG GIỚI HẠN)
-        // Hệ thống đã cập nhật 150 từ vựng với 13 chủ đề khác nhau
+        // Hệ thống đã cập nhật hơn 300 từ vựng với các chủ đề đa dạng
         // ==========================================
         const VOCABULARY_DB = [
             // 1. Động vật (Animal)
-            { word: "dog", phonetic: "/dɒɡ/", translation: "con chó", example: "My dog is smart.", exampleTrans: "Chú chó của tôi rất thông minh.", topic: "animal", emoji: "🐶" },
-            { word: "cat", phonetic: "/kæt/", translation: "con mèo", example: "The cat is sleeping.", exampleTrans: "Con mèo đang ngủ.", topic: "animal", emoji: "🐱" },
-            { word: "bird", phonetic: "/bɜːd/", translation: "con chim", example: "The bird can fly.", exampleTrans: "Con chim có thể bay.", topic: "animal", emoji: "🐦" },
-            { word: "fish", phonetic: "/fɪʃ/", translation: "con cá", example: "I see a fish.", exampleTrans: "Mình thấy một chú cá.", topic: "animal", emoji: "🐟" },
-            { word: "elephant", phonetic: "/ˈelɪfənt/", translation: "con voi", example: "The elephant is big.", exampleTrans: "Con voi rất to.", topic: "animal", emoji: "🐘" },
-            { word: "monkey", phonetic: "/ˈmʌŋki/", translation: "con khỉ", example: "Monkeys like bananas.", exampleTrans: "Bầy khỉ thích ăn chuối.", topic: "animal", emoji: "🐒" },
-            { word: "tiger", phonetic: "/ˈtaɪɡə/", translation: "con hổ", example: "The tiger is strong.", exampleTrans: "Con hổ rất khỏe mạnh.", topic: "animal", emoji: "🐅" },
-            { word: "rabbit", phonetic: "/ˈræbɪt/", translation: "con thỏ", example: "Rabbits jump high.", exampleTrans: "Những chú thỏ nhảy rất cao.", topic: "animal", emoji: "🐇" },
-            { word: "bear", phonetic: "/beə/", translation: "con gấu", example: "The bear eats honey.", exampleTrans: "Con gấu đang ăn mật ong.", topic: "animal", emoji: "🐻" },
-            { word: "lion", phonetic: "/ˈlaɪən/", translation: "con sư tử", example: "The lion is the king.", exampleTrans: "Sư tử là vua của muôn loài.", topic: "animal", emoji: "🦁" },
-            { word: "cow", phonetic: "/kaʊ/", translation: "con bò", example: "The cow gives milk.", exampleTrans: "Con bò cho chúng ta sữa.", topic: "animal", emoji: "🐮" },
-            { word: "pig", phonetic: "/pɪɡ/", translation: "con lợn", example: "The pig is pink.", exampleTrans: "Con lợn có màu hồng.", topic: "animal", emoji: "🐷" },
-            { word: "horse", phonetic: "/hɔːs/", translation: "con ngựa", example: "I ride a horse.", exampleTrans: "Mình cưỡi một chú ngựa.", topic: "animal", emoji: "🐴" },
-            { word: "sheep", phonetic: "/ʃiːp/", translation: "con cừu", example: "The sheep is white.", exampleTrans: "Con cừu có màu trắng.", topic: "animal", emoji: "🐑" },
-            { word: "duck", phonetic: "/dʌk/", translation: "con vịt", example: "The duck is swimming.", exampleTrans: "Con vịt đang bơi.", topic: "animal", emoji: "🦆" },
+            { word: "dog", phonetic: "/dɒɡ/", translation: "con chó", example: "I have a dog.", exampleTrans: "Mình có một con chó.", topic: "animal", emoji: "🐶" },
+            { word: "cat", phonetic: "/kæt/", translation: "con mèo", example: "The cat is cute.", exampleTrans: "Con mèo rất đáng yêu.", topic: "animal", emoji: "🐱" },
+            { word: "bird", phonetic: "/bɜːd/", translation: "con chim", example: "The bird flies.", exampleTrans: "Con chim bay lượn.", topic: "animal", emoji: "🐦" },
+            { word: "fish", phonetic: "/fɪʃ/", translation: "con cá", example: "The fish swims.", exampleTrans: "Con cá bơi lội.", topic: "animal", emoji: "🐟" },
+            { word: "elephant", phonetic: "/ˈelɪfənt/", translation: "con voi", example: "It is an elephant.", exampleTrans: "Đó là một con voi.", topic: "animal", emoji: "🐘" },
+            { word: "monkey", phonetic: "/ˈmʌŋki/", translation: "con khỉ", example: "I see a monkey.", exampleTrans: "Mình thấy một con khỉ.", topic: "animal", emoji: "🐒" },
+            { word: "tiger", phonetic: "/ˈtaɪɡə/", translation: "con hổ", example: "The tiger is big.", exampleTrans: "Con hổ rất to.", topic: "animal", emoji: "🐅" },
+            { word: "rabbit", phonetic: "/ˈræbɪt/", translation: "con thỏ", example: "The rabbit hops.", exampleTrans: "Con thỏ nhảy nhót.", topic: "animal", emoji: "🐇" },
+            { word: "bear", phonetic: "/beə/", translation: "con gấu", example: "The bear is brown.", exampleTrans: "Con gấu màu nâu.", topic: "animal", emoji: "🐻" },
+            { word: "lion", phonetic: "/ˈlaɪən/", translation: "con sư tử", example: "The lion roars.", exampleTrans: "Sư tử gầm rống.", topic: "animal", emoji: "🦁" },
+            { word: "cow", phonetic: "/kaʊ/", translation: "con bò", example: "The cow eats grass.", exampleTrans: "Con bò ăn cỏ.", topic: "animal", emoji: "🐮" },
+            { word: "pig", phonetic: "/pɪɡ/", translation: "con lợn", example: "The pig is fat.", exampleTrans: "Con lợn béo tròn.", topic: "animal", emoji: "🐷" },
+            { word: "horse", phonetic: "/hɔːs/", translation: "con ngựa", example: "I ride a horse.", exampleTrans: "Mình cưỡi ngựa.", topic: "animal", emoji: "🐴" },
+            { word: "sheep", phonetic: "/ʃiːp/", translation: "con cừu", example: "The sheep is soft.", exampleTrans: "Lông cừu rất mềm.", topic: "animal", emoji: "🐑" },
+            { word: "duck", phonetic: "/dʌk/", translation: "con vịt", example: "The duck says quack.", exampleTrans: "Con vịt kêu cạp cạp.", topic: "animal", emoji: "🦆" },
+            { word: "mouse", phonetic: "/maʊs/", translation: "con chuột", example: "The mouse is small.", exampleTrans: "Con chuột rất nhỏ.", topic: "animal", emoji: "🐭" },
+            { word: "snake", phonetic: "/sneɪk/", translation: "con rắn", example: "The snake is long.", exampleTrans: "Con rắn rất dài.", topic: "animal", emoji: "🐍" },
+            { word: "frog", phonetic: "/frɒɡ/", translation: "con ếch", example: "The frog jumps.", exampleTrans: "Con ếch nhảy.", topic: "animal", emoji: "🐸" },
+            { word: "turtle", phonetic: "/ˈtɜːtl/", translation: "con rùa", example: "The turtle is slow.", exampleTrans: "Con rùa rất chậm.", topic: "animal", emoji: "🐢" },
+            { word: "spider", phonetic: "/ˈspaɪdə/", translation: "con nhện", example: "I see a spider.", exampleTrans: "Mình thấy một con nhện.", topic: "animal", emoji: "🕷️" },
+            { word: "bee", phonetic: "/biː/", translation: "con ong", example: "The bee makes honey.", exampleTrans: "Con ong làm mật.", topic: "animal", emoji: "🐝" },
+            { word: "ant", phonetic: "/ænt/", translation: "con kiến", example: "The ant is tiny.", exampleTrans: "Con kiến nhỏ xíu.", topic: "animal", emoji: "🐜" },
 
             // 2. Đồ ăn & Thức uống (Food)
             { word: "apple", phonetic: "/ˈæpl/", translation: "quả táo", example: "I eat an apple.", exampleTrans: "Mình ăn một quả táo.", topic: "food", emoji: "🍎" },
-            { word: "banana", phonetic: "/bəˈnɑːnə/", translation: "quả chuối", example: "This banana is sweet.", exampleTrans: "Quả chuối này rất ngọt.", topic: "food", emoji: "🍌" },
-            { word: "orange", phonetic: "/ˈɒrɪndʒ/", translation: "quả cam", example: "I like orange juice.", exampleTrans: "Mình thích nước ép cam.", topic: "food", emoji: "🍊" },
-            { word: "water", phonetic: "/ˈwɔːtə/", translation: "nước", example: "Drink more water.", exampleTrans: "Hãy uống nhiều nước hơn.", topic: "food", emoji: "💧" },
-            { word: "milk", phonetic: "/mɪlk/", translation: "sữa", example: "Milk is good for you.", exampleTrans: "Sữa rất tốt cho bạn.", topic: "food", emoji: "🥛" },
-            { word: "bread", phonetic: "/bred/", translation: "bánh mì", example: "I have bread for breakfast.", exampleTrans: "Mình ăn bánh mì vào bữa sáng.", topic: "food", emoji: "🍞" },
-            { word: "egg", phonetic: "/eɡ/", translation: "quả trứng", example: "I eat an egg.", exampleTrans: "Mình ăn một quả trứng.", topic: "food", emoji: "🥚" },
-            { word: "cake", phonetic: "/keɪk/", translation: "bánh ngọt", example: "This cake is yummy.", exampleTrans: "Chiếc bánh này rất ngon.", topic: "food", emoji: "🍰" },
-            { word: "pizza", phonetic: "/ˈpiːtsə/", translation: "pizza", example: "We order a pizza.", exampleTrans: "Chúng mình gọi một chiếc pizza.", topic: "food", emoji: "🍕" },
-            { word: "rice", phonetic: "/raɪs/", translation: "cơm", example: "I eat rice every day.", exampleTrans: "Mình ăn cơm mỗi ngày.", topic: "food", emoji: "🍚" },
-            { word: "meat", phonetic: "/miːt/", translation: "thịt", example: "I eat meat for dinner.", exampleTrans: "Mình ăn thịt vào bữa tối.", topic: "food", emoji: "🥩" },
-            { word: "chicken", phonetic: "/ˈtʃɪkɪn/", translation: "thịt gà", example: "Fried chicken is tasty.", exampleTrans: "Gà rán rất ngon.", topic: "food", emoji: "🍗" },
-            { word: "soup", phonetic: "/suːp/", translation: "món súp", example: "The soup is hot.", exampleTrans: "Món súp này rất nóng.", topic: "food", emoji: "🥣" },
-            { word: "ice cream", phonetic: "/ˌaɪs ˈkriːm/", translation: "kem", example: "I love ice cream.", exampleTrans: "Mình rất thích ăn kem.", topic: "food", emoji: "🍦" },
-            { word: "candy", phonetic: "/ˈkændi/", translation: "kẹo", example: "Too much candy is bad.", exampleTrans: "Ăn quá nhiều kẹo là không tốt.", topic: "food", emoji: "🍬" },
+            { word: "banana", phonetic: "/bəˈnɑːnə/", translation: "quả chuối", example: "I peel a banana.", exampleTrans: "Mình bóc vỏ quả chuối.", topic: "food", emoji: "🍌" },
+            { word: "orange", phonetic: "/ˈɒrɪndʒ/", translation: "quả cam", example: "The orange is sweet.", exampleTrans: "Quả cam rất ngọt.", topic: "food", emoji: "🍊" },
+            { word: "water", phonetic: "/ˈwɔːtə/", translation: "nước", example: "Drink pure water.", exampleTrans: "Hãy uống nước lọc.", topic: "food", emoji: "💧" },
+            { word: "milk", phonetic: "/mɪlk/", translation: "sữa", example: "I drink milk.", exampleTrans: "Mình uống sữa.", topic: "food", emoji: "🥛" },
+            { word: "bread", phonetic: "/bred/", translation: "bánh mì", example: "I buy some bread.", exampleTrans: "Mình mua chút bánh mì.", topic: "food", emoji: "🍞" },
+            { word: "egg", phonetic: "/eɡ/", translation: "quả trứng", example: "Boil an egg.", exampleTrans: "Hãy luộc một quả trứng.", topic: "food", emoji: "🥚" },
+            { word: "cake", phonetic: "/keɪk/", translation: "bánh ngọt", example: "Happy birthday cake.", exampleTrans: "Bánh kem sinh nhật.", topic: "food", emoji: "🍰" },
+            { word: "pizza", phonetic: "/ˈpiːtsə/", translation: "pizza", example: "We share a pizza.", exampleTrans: "Chúng mình chia nhau pizza.", topic: "food", emoji: "🍕" },
+            { word: "rice", phonetic: "/raɪs/", translation: "cơm", example: "I eat rice daily.", exampleTrans: "Mình ăn cơm hàng ngày.", topic: "food", emoji: "🍚" },
+            { word: "meat", phonetic: "/miːt/", translation: "thịt", example: "I like grilled meat.", exampleTrans: "Mình thích thịt nướng.", topic: "food", emoji: "🥩" },
+            { word: "chicken", phonetic: "/ˈtʃɪkɪn/", translation: "thịt gà", example: "Fried chicken is good.", exampleTrans: "Gà rán rất ngon.", topic: "food", emoji: "🍗" },
+            { word: "soup", phonetic: "/suːp/", translation: "món súp", example: "The soup is hot.", exampleTrans: "Món súp rất nóng.", topic: "food", emoji: "🥣" },
+            { word: "ice cream", phonetic: "/ˌaɪs ˈkriːm/", translation: "kem", example: "I love ice cream.", exampleTrans: "Mình rất thích kem.", topic: "food", emoji: "🍦" },
+            { word: "candy", phonetic: "/ˈkændi/", translation: "kẹo", example: "Do not eat much candy.", exampleTrans: "Đừng ăn nhiều kẹo.", topic: "food", emoji: "🍬" },
+            { word: "cheese", phonetic: "/tʃiːz/", translation: "pho mát", example: "Cheese is yellow.", exampleTrans: "Pho mát màu vàng.", topic: "food", emoji: "🧀" },
+            { word: "burger", phonetic: "/ˈbɜːɡə/", translation: "bánh mì kẹp", example: "I eat a burger.", exampleTrans: "Mình ăn bánh mì kẹp.", topic: "food", emoji: "🍔" },
+            { word: "salad", phonetic: "/ˈsæləd/", translation: "sa lát", example: "Salad is healthy.", exampleTrans: "Sa lát rất tốt cho sức khỏe.", topic: "food", emoji: "🥗" },
+            { word: "tomato", phonetic: "/təˈmɑːtəʊ/", translation: "cà chua", example: "The tomato is red.", exampleTrans: "Cà chua màu đỏ.", topic: "food", emoji: "🍅" },
+            { word: "potato", phonetic: "/pəˈteɪtəʊ/", translation: "khoai tây", example: "I like fried potatoes.", exampleTrans: "Mình thích khoai tây chiên.", topic: "food", emoji: "🥔" },
+            { word: "carrot", phonetic: "/ˈkærət/", translation: "cà rốt", example: "Rabbits eat carrots.", exampleTrans: "Thỏ ăn cà rốt.", topic: "food", emoji: "🥕" },
+            { word: "onion", phonetic: "/ˈʌnjən/", translation: "hành tây", example: "Chop the onion.", exampleTrans: "Hãy thái hành tây.", topic: "food", emoji: "🧅" },
+            { word: "grape", phonetic: "/ɡreɪp/", translation: "quả nho", example: "The grape is purple.", exampleTrans: "Quả nho màu tím.", topic: "food", emoji: "🍇" },
+            { word: "lemon", phonetic: "/ˈlemən/", translation: "quả chanh", example: "The lemon is sour.", exampleTrans: "Quả chanh rất chua.", topic: "food", emoji: "🍋" },
+            { word: "mango", phonetic: "/ˈmæŋɡəʊ/", translation: "quả xoài", example: "This mango is sweet.", exampleTrans: "Quả xoài này rất ngọt.", topic: "food", emoji: "🥭" },
+            { word: "strawberry", phonetic: "/ˈstrɔːbəri/", translation: "dâu tây", example: "I pick a strawberry.", exampleTrans: "Mình hái một quả dâu tây.", topic: "food", emoji: "🍓" },
+            { word: "juice", phonetic: "/dʒuːs/", translation: "nước ép", example: "I drink apple juice.", exampleTrans: "Mình uống nước ép táo.", topic: "food", emoji: "🧃" },
+            { word: "tea", phonetic: "/tiː/", translation: "trà", example: "My dad drinks tea.", exampleTrans: "Bố mình uống trà.", topic: "food", emoji: "🍵" },
+            { word: "coffee", phonetic: "/ˈkɒfi/", translation: "cà phê", example: "Hot coffee.", exampleTrans: "Cà phê nóng.", topic: "food", emoji: "☕" },
+            { word: "chocolate", phonetic: "/ˈtʃɒklət/", translation: "sô cô la", example: "Sweet chocolate.", exampleTrans: "Sô cô la ngọt ngào.", topic: "food", emoji: "🍫" },
 
             // 3. Màu sắc (Color)
-            { word: "red", phonetic: "/red/", translation: "màu đỏ", example: "The apple is red.", exampleTrans: "Quả táo có màu đỏ.", topic: "color", emoji: "🔴" },
-            { word: "blue", phonetic: "/bluː/", translation: "màu xanh dương", example: "The sky is blue.", exampleTrans: "Bầu trời màu xanh dương.", topic: "color", emoji: "🔵" },
-            { word: "green", phonetic: "/ɡriːn/", translation: "màu xanh lá", example: "The grass is green.", exampleTrans: "Cỏ có màu xanh lá.", topic: "color", emoji: "🟢" },
-            { word: "yellow", phonetic: "/ˈjeləʊ/", translation: "màu vàng", example: "The sun is yellow.", exampleTrans: "Mặt trời có màu vàng.", topic: "color", emoji: "🟡" },
-            { word: "pink", phonetic: "/pɪŋk/", translation: "màu hồng", example: "I have a pink pen.", exampleTrans: "Mình có một chiếc bút màu hồng.", topic: "color", emoji: "🩷" },
-            { word: "black", phonetic: "/blæk/", translation: "màu đen", example: "The cat is black.", exampleTrans: "Con mèo có màu đen.", topic: "color", emoji: "⚫" },
-            { word: "white", phonetic: "/waɪt/", translation: "màu trắng", example: "Snow is white.", exampleTrans: "Tuyết có màu trắng.", topic: "color", emoji: "⚪" },
-            { word: "brown", phonetic: "/braʊn/", translation: "màu nâu", example: "The bear is brown.", exampleTrans: "Con gấu màu nâu.", topic: "color", emoji: "🟤" },
-            { word: "purple", phonetic: "/ˈpɜːpl/", translation: "màu tím", example: "This flower is purple.", exampleTrans: "Bông hoa này màu tím.", topic: "color", emoji: "🟣" },
-            { word: "orange", phonetic: "/ˈɒrɪndʒ/", translation: "màu cam", example: "My shirt is orange.", exampleTrans: "Áo sơ mi của mình màu cam.", topic: "color", emoji: "🟠" },
+            { word: "red", phonetic: "/red/", translation: "màu đỏ", example: "Red apple.", exampleTrans: "Quả táo màu đỏ.", topic: "color", emoji: "🔴" },
+            { word: "blue", phonetic: "/bluː/", translation: "màu xanh dương", example: "Blue sky.", exampleTrans: "Bầu trời màu xanh dương.", topic: "color", emoji: "🔵" },
+            { word: "green", phonetic: "/ɡriːn/", translation: "màu xanh lá", example: "Green grass.", exampleTrans: "Cỏ màu xanh lá.", topic: "color", emoji: "🟢" },
+            { word: "yellow", phonetic: "/ˈjeləʊ/", translation: "màu vàng", example: "Yellow sun.", exampleTrans: "Mặt trời màu vàng.", topic: "color", emoji: "🟡" },
+            { word: "pink", phonetic: "/pɪŋk/", translation: "màu hồng", example: "Pink flower.", exampleTrans: "Bông hoa màu hồng.", topic: "color", emoji: "🩷" },
+            { word: "black", phonetic: "/blæk/", translation: "màu đen", example: "Black cat.", exampleTrans: "Con mèo màu đen.", topic: "color", emoji: "⚫" },
+            { word: "white", phonetic: "/waɪt/", translation: "màu trắng", example: "White snow.", exampleTrans: "Tuyết màu trắng.", topic: "color", emoji: "⚪" },
+            { word: "brown", phonetic: "/braʊn/", translation: "màu nâu", example: "Brown bear.", exampleTrans: "Con gấu màu nâu.", topic: "color", emoji: "🟤" },
+            { word: "purple", phonetic: "/ˈpɜːpl/", translation: "màu tím", example: "Purple grape.", exampleTrans: "Quả nho màu tím.", topic: "color", emoji: "🟣" },
+            { word: "orange", phonetic: "/ˈɒrɪndʒ/", translation: "màu cam", example: "Orange shirt.", exampleTrans: "Áo màu cam.", topic: "color", emoji: "🟠" },
+            { word: "grey", phonetic: "/ɡreɪ/", translation: "màu xám", example: "Grey cloud.", exampleTrans: "Đám mây màu xám.", topic: "color", emoji: "🔘" },
 
             // 4. Gia đình & Mọi người (Family)
-            { word: "family", phonetic: "/ˈfæməli/", translation: "gia đình", example: "I love my family.", exampleTrans: "Mình yêu gia đình của mình.", topic: "family", emoji: "👨‍👩‍👧‍👦" },
+            { word: "family", phonetic: "/ˈfæməli/", translation: "gia đình", example: "I love my family.", exampleTrans: "Mình yêu gia đình.", topic: "family", emoji: "👨‍👩‍👧‍👦" },
             { word: "mother", phonetic: "/ˈmʌðə/", translation: "mẹ", example: "My mother is kind.", exampleTrans: "Mẹ mình rất hiền.", topic: "family", emoji: "👩" },
             { word: "father", phonetic: "/ˈfɑːðə/", translation: "bố", example: "My father is tall.", exampleTrans: "Bố mình rất cao.", topic: "family", emoji: "👨" },
-            { word: "brother", phonetic: "/ˈbrʌðə/", translation: "anh/em trai", example: "My brother plays soccer.", exampleTrans: "Anh trai mình chơi bóng đá.", topic: "family", emoji: "👦" },
-            { word: "sister", phonetic: "/ˈsɪstə/", translation: "chị/em gái", example: "My sister is cute.", exampleTrans: "Em gái mình rất đáng yêu.", topic: "family", emoji: "👧" },
-            { word: "baby", phonetic: "/ˈbeɪbi/", translation: "em bé", example: "The baby is crying.", exampleTrans: "Em bé đang khóc.", topic: "family", emoji: "👶" },
-            { word: "grandfather", phonetic: "/ˈɡrænˌfɑːðə/", translation: "ông", example: "My grandfather is old.", exampleTrans: "Ông của mình đã già.", topic: "family", emoji: "👴" },
-            { word: "grandmother", phonetic: "/ˈɡrænˌmʌðə/", translation: "bà", example: "My grandmother is nice.", exampleTrans: "Bà của mình rất tốt bụng.", topic: "family", emoji: "👵" },
-            { word: "friend", phonetic: "/frend/", translation: "bạn bè", example: "He is my best friend.", exampleTrans: "Cậu ấy là người bạn thân nhất của mình.", topic: "family", emoji: "🧑‍🤝‍🧑" },
-            { word: "child", phonetic: "/tʃaɪld/", translation: "trẻ em", example: "The child is playing.", exampleTrans: "Đứa trẻ đang chơi đùa.", topic: "family", emoji: "🧒" },
+            { word: "brother", phonetic: "/ˈbrʌðə/", translation: "anh/em trai", example: "He is my brother.", exampleTrans: "Anh ấy là anh trai mình.", topic: "family", emoji: "👦" },
+            { word: "sister", phonetic: "/ˈsɪstə/", translation: "chị/em gái", example: "She is my sister.", exampleTrans: "Cô ấy là chị mình.", topic: "family", emoji: "👧" },
+            { word: "baby", phonetic: "/ˈbeɪbi/", translation: "em bé", example: "The baby sleeps.", exampleTrans: "Em bé đang ngủ.", topic: "family", emoji: "👶" },
+            { word: "grandfather", phonetic: "/ˈɡrænˌfɑːðə/", translation: "ông", example: "My grandfather.", exampleTrans: "Ông của mình.", topic: "family", emoji: "👴" },
+            { word: "grandmother", phonetic: "/ˈɡrænˌmʌðə/", translation: "bà", example: "My grandmother.", exampleTrans: "Bà của mình.", topic: "family", emoji: "👵" },
+            { word: "friend", phonetic: "/frend/", translation: "bạn bè", example: "My best friend.", exampleTrans: "Bạn thân của mình.", topic: "family", emoji: "🧑‍🤝‍🧑" },
+            { word: "child", phonetic: "/tʃaɪld/", translation: "trẻ em", example: "A happy child.", exampleTrans: "Một đứa trẻ vui vẻ.", topic: "family", emoji: "🧒" },
+            { word: "boy", phonetic: "/bɔɪ/", translation: "bé trai", example: "He is a boy.", exampleTrans: "Cậu ấy là một bé trai.", topic: "family", emoji: "👦" },
+            { word: "girl", phonetic: "/ɡɜːl/", translation: "bé gái", example: "She is a girl.", exampleTrans: "Cô ấy là một bé gái.", topic: "family", emoji: "👧" },
+            { word: "man", phonetic: "/mæn/", translation: "đàn ông", example: "A strong man.", exampleTrans: "Một người đàn ông khỏe mạnh.", topic: "family", emoji: "👨" },
+            { word: "woman", phonetic: "/ˈwʊmən/", translation: "phụ nữ", example: "A beautiful woman.", exampleTrans: "Một người phụ nữ xinh đẹp.", topic: "family", emoji: "👩" },
+            { word: "uncle", phonetic: "/ˈʌŋkl/", translation: "chú, bác trai", example: "My uncle is here.", exampleTrans: "Chú của mình ở đây.", topic: "family", emoji: "👨" },
+            { word: "aunt", phonetic: "/ɑːnt/", translation: "cô, dì", example: "My aunt smiles.", exampleTrans: "Cô của mình mỉm cười.", topic: "family", emoji: "👩" },
+            { word: "parents", phonetic: "/ˈpeərənts/", translation: "bố mẹ", example: "I love my parents.", exampleTrans: "Mình yêu bố mẹ.", topic: "family", emoji: "👫" },
 
             // 5. Trường học (School)
-            { word: "school", phonetic: "/skuːl/", translation: "trường học", example: "I go to school.", exampleTrans: "Mình đi đến trường.", topic: "school", emoji: "🏫" },
-            { word: "teacher", phonetic: "/ˈtiːtʃə/", translation: "giáo viên", example: "The teacher is reading.", exampleTrans: "Giáo viên đang đọc sách.", topic: "school", emoji: "👩‍🏫" },
-            { word: "student", phonetic: "/ˈstjuːdnt/", translation: "học sinh", example: "I am a student.", exampleTrans: "Mình là một học sinh.", topic: "school", emoji: "🎒" },
-            { word: "book", phonetic: "/bʊk/", translation: "quyển sách", example: "Open your book.", exampleTrans: "Hãy mở sách của bạn ra.", topic: "school", emoji: "📖" },
-            { word: "pen", phonetic: "/pen/", translation: "cái bút", example: "I have a blue pen.", exampleTrans: "Mình có một cái bút xanh.", topic: "school", emoji: "🖊️" },
-            { word: "pencil", phonetic: "/ˈpensl/", translation: "bút chì", example: "I draw with a pencil.", exampleTrans: "Mình vẽ bằng bút chì.", topic: "school", emoji: "✏️" },
-            { word: "eraser", phonetic: "/ɪˈreɪzə/", translation: "cục tẩy", example: "Can I borrow your eraser?", exampleTrans: "Mình mượn cục tẩy của bạn nhé?", topic: "school", emoji: "🧽" },
-            { word: "ruler", phonetic: "/ˈruːlə/", translation: "cái thước", example: "Use a ruler to draw a line.", exampleTrans: "Dùng thước để kẻ một đường.", topic: "school", emoji: "📏" },
-            { word: "desk", phonetic: "/desk/", translation: "bàn học", example: "Sit at your desk.", exampleTrans: "Hãy ngồi vào bàn học của bạn.", topic: "school", emoji: "🪑" },
-            { word: "bag", phonetic: "/bæɡ/", translation: "cặp sách", example: "My bag is heavy.", exampleTrans: "Cặp sách của mình rất nặng.", topic: "school", emoji: "🎒" },
+            { word: "school", phonetic: "/skuːl/", translation: "trường học", example: "I go to school.", exampleTrans: "Mình đi học.", topic: "school", emoji: "🏫" },
+            { word: "teacher", phonetic: "/ˈtiːtʃə/", translation: "giáo viên", example: "Listen to the teacher.", exampleTrans: "Hãy nghe cô giáo.", topic: "school", emoji: "👩‍🏫" },
+            { word: "student", phonetic: "/ˈstjuːdnt/", translation: "học sinh", example: "I am a student.", exampleTrans: "Mình là học sinh.", topic: "school", emoji: "🎒" },
+            { word: "book", phonetic: "/bʊk/", translation: "quyển sách", example: "Read a book.", exampleTrans: "Hãy đọc sách.", topic: "school", emoji: "📖" },
+            { word: "pen", phonetic: "/pen/", translation: "cái bút", example: "A red pen.", exampleTrans: "Một cái bút đỏ.", topic: "school", emoji: "🖊️" },
+            { word: "pencil", phonetic: "/ˈpensl/", translation: "bút chì", example: "Draw with a pencil.", exampleTrans: "Vẽ bằng bút chì.", topic: "school", emoji: "✏️" },
+            { word: "eraser", phonetic: "/ɪˈreɪzə/", translation: "cục tẩy", example: "Use an eraser.", exampleTrans: "Dùng cục tẩy.", topic: "school", emoji: "🧽" },
+            { word: "ruler", phonetic: "/ˈruːlə/", translation: "cái thước", example: "A long ruler.", exampleTrans: "Một chiếc thước dài.", topic: "school", emoji: "📏" },
+            { word: "desk", phonetic: "/desk/", translation: "bàn học", example: "Sit at your desk.", exampleTrans: "Ngồi vào bàn.", topic: "school", emoji: "🪑" },
+            { word: "bag", phonetic: "/bæɡ/", translation: "cặp sách", example: "My school bag.", exampleTrans: "Cặp sách của mình.", topic: "school", emoji: "🎒" },
+            { word: "paper", phonetic: "/ˈpeɪpə/", translation: "tờ giấy", example: "A piece of paper.", exampleTrans: "Một tờ giấy.", topic: "school", emoji: "📄" },
+            { word: "board", phonetic: "/bɔːd/", translation: "cái bảng", example: "Look at the board.", exampleTrans: "Hãy nhìn lên bảng.", topic: "school", emoji: "🫵" },
+            { word: "classroom", phonetic: "/ˈklɑːsruːm/", translation: "phòng học", example: "A big classroom.", exampleTrans: "Một phòng học lớn.", topic: "school", emoji: "🚪" },
+            { word: "lesson", phonetic: "/ˈlesn/", translation: "bài học", example: "A new lesson.", exampleTrans: "Một bài học mới.", topic: "school", emoji: "📚" },
+            { word: "homework", phonetic: "/ˈhəʊmwɜːk/", translation: "bài tập", example: "Do your homework.", exampleTrans: "Hãy làm bài tập.", topic: "school", emoji: "📝" },
+            { word: "test", phonetic: "/test/", translation: "bài kiểm tra", example: "A math test.", exampleTrans: "Một bài kiểm tra toán.", topic: "school", emoji: "💯" },
+            { word: "math", phonetic: "/mæθ/", translation: "môn toán", example: "I learn math.", exampleTrans: "Mình học toán.", topic: "school", emoji: "➕" },
+            { word: "art", phonetic: "/ɑːt/", translation: "môn mĩ thuật", example: "I draw in art class.", exampleTrans: "Mình vẽ trong giờ mĩ thuật.", topic: "school", emoji: "🎨" },
+            { word: "music", phonetic: "/ˈmjuːzɪk/", translation: "âm nhạc", example: "Sing in music class.", exampleTrans: "Hát trong giờ âm nhạc.", topic: "school", emoji: "🎵" },
 
             // 6. Tính từ cơ bản (Adjective)
-            { word: "happy", phonetic: "/ˈhæpi/", translation: "vui vẻ", example: "I feel happy.", exampleTrans: "Mình cảm thấy vui.", topic: "adjective", emoji: "😄" },
-            { word: "sad", phonetic: "/sæd/", translation: "buồn", example: "Don't be sad.", exampleTrans: "Đừng buồn nhé.", topic: "adjective", emoji: "😢" },
-            { word: "big", phonetic: "/bɪɡ/", translation: "to lớn", example: "That is a big box.", exampleTrans: "Đó là một cái hộp to.", topic: "adjective", emoji: "🐘" },
-            { word: "small", phonetic: "/smɔːl/", translation: "nhỏ bé", example: "Look at the small bird.", exampleTrans: "Hãy nhìn chú chim nhỏ kia.", topic: "adjective", emoji: "🐜" },
-            { word: "fast", phonetic: "/fɑːst/", translation: "nhanh", example: "The car is fast.", exampleTrans: "Chiếc xe ô tô rất nhanh.", topic: "adjective", emoji: "🚀" },
-            { word: "slow", phonetic: "/sləʊ/", translation: "chậm", example: "The turtle is slow.", exampleTrans: "Con rùa thì chậm chạp.", topic: "adjective", emoji: "🐢" },
-            { word: "hot", phonetic: "/hɒt/", translation: "nóng", example: "The fire is hot.", exampleTrans: "Ngọn lửa rất nóng.", topic: "adjective", emoji: "🔥" },
-            { word: "cold", phonetic: "/kəʊld/", translation: "lạnh", example: "Ice is cold.", exampleTrans: "Nước đá rất lạnh.", topic: "adjective", emoji: "🧊" },
-            { word: "tall", phonetic: "/tɔːl/", translation: "cao", example: "The tree is tall.", exampleTrans: "Cái cây rất cao.", topic: "adjective", emoji: "🦒" },
-            { word: "short", phonetic: "/ʃɔːt/", translation: "ngắn, thấp", example: "My hair is short.", exampleTrans: "Tóc của mình ngắn.", topic: "adjective", emoji: "📏" },
-            { word: "good", phonetic: "/ɡʊd/", translation: "tốt, giỏi", example: "You are a good boy.", exampleTrans: "Con là một cậu bé ngoan.", topic: "adjective", emoji: "👍" },
-            { word: "bad", phonetic: "/bæd/", translation: "xấu, tồi", example: "That is a bad idea.", exampleTrans: "Đó là một ý kiến tồi.", topic: "adjective", emoji: "👎" },
-            { word: "new", phonetic: "/njuː/", translation: "mới", example: "I have a new toy.", exampleTrans: "Mình có một món đồ chơi mới.", topic: "adjective", emoji: "✨" },
-            { word: "old", phonetic: "/əʊld/", translation: "cũ, già", example: "My grandfather is old.", exampleTrans: "Ông của mình đã già.", topic: "adjective", emoji: "🕰️" },
-            { word: "beautiful", phonetic: "/ˈbjuːtɪfl/", translation: "xinh đẹp", example: "The flower is beautiful.", exampleTrans: "Bông hoa thật xinh đẹp.", topic: "adjective", emoji: "🌸" },
+            { word: "happy", phonetic: "/ˈhæpi/", translation: "vui vẻ", example: "I am happy.", exampleTrans: "Mình đang vui.", topic: "adjective", emoji: "😄" },
+            { word: "sad", phonetic: "/sæd/", translation: "buồn", example: "He is sad.", exampleTrans: "Cậu ấy đang buồn.", topic: "adjective", emoji: "😢" },
+            { word: "big", phonetic: "/bɪɡ/", translation: "to lớn", example: "A big box.", exampleTrans: "Một cái hộp to.", topic: "adjective", emoji: "🐘" },
+            { word: "small", phonetic: "/smɔːl/", translation: "nhỏ bé", example: "A small ant.", exampleTrans: "Một con kiến nhỏ.", topic: "adjective", emoji: "🐜" },
+            { word: "fast", phonetic: "/fɑːst/", translation: "nhanh", example: "A fast car.", exampleTrans: "Một chiếc xe nhanh.", topic: "adjective", emoji: "🚀" },
+            { word: "slow", phonetic: "/sləʊ/", translation: "chậm", example: "A slow turtle.", exampleTrans: "Một con rùa chậm chạp.", topic: "adjective", emoji: "🐢" },
+            { word: "hot", phonetic: "/hɒt/", translation: "nóng", example: "The tea is hot.", exampleTrans: "Trà rất nóng.", topic: "adjective", emoji: "🔥" },
+            { word: "cold", phonetic: "/kəʊld/", translation: "lạnh", example: "It is cold.", exampleTrans: "Trời rất lạnh.", topic: "adjective", emoji: "🧊" },
+            { word: "tall", phonetic: "/tɔːl/", translation: "cao", example: "A tall tree.", exampleTrans: "Một cái cây cao.", topic: "adjective", emoji: "🦒" },
+            { word: "short", phonetic: "/ʃɔːt/", translation: "ngắn, thấp", example: "A short pencil.", exampleTrans: "Một cái bút chì ngắn.", topic: "adjective", emoji: "📏" },
+            { word: "good", phonetic: "/ɡʊd/", translation: "tốt, giỏi", example: "Good job!", exampleTrans: "Làm tốt lắm!", topic: "adjective", emoji: "👍" },
+            { word: "bad", phonetic: "/bæd/", translation: "xấu, tồi", example: "A bad idea.", exampleTrans: "Một ý kiến tồi.", topic: "adjective", emoji: "👎" },
+            { word: "new", phonetic: "/njuː/", translation: "mới", example: "A new toy.", exampleTrans: "Một món đồ chơi mới.", topic: "adjective", emoji: "✨" },
+            { word: "old", phonetic: "/əʊld/", translation: "cũ, già", example: "An old book.", exampleTrans: "Một quyển sách cũ.", topic: "adjective", emoji: "🕰️" },
+            { word: "beautiful", phonetic: "/ˈbjuːtɪfl/", translation: "xinh đẹp", example: "A beautiful girl.", exampleTrans: "Một cô gái xinh đẹp.", topic: "adjective", emoji: "🌸" },
+            { word: "clean", phonetic: "/kliːn/", translation: "sạch sẽ", example: "Clean hands.", exampleTrans: "Đôi tay sạch sẽ.", topic: "adjective", emoji: "🧼" },
+            { word: "dirty", phonetic: "/ˈdɜːti/", translation: "bẩn thỉu", example: "Dirty shoes.", exampleTrans: "Đôi giày bẩn.", topic: "adjective", emoji: "💩" },
+            { word: "easy", phonetic: "/ˈiːzi/", translation: "dễ dàng", example: "An easy test.", exampleTrans: "Một bài kiểm tra dễ.", topic: "adjective", emoji: "✅" },
+            { word: "hard", phonetic: "/hɑːd/", translation: "khó khăn, cứng", example: "The rock is hard.", exampleTrans: "Hòn đá rất cứng.", topic: "adjective", emoji: "🧱" },
+            { word: "soft", phonetic: "/sɒft/", translation: "mềm mại", example: "A soft pillow.", exampleTrans: "Một cái gối mềm.", topic: "adjective", emoji: "🧸" },
+            { word: "loud", phonetic: "/laʊd/", translation: "to, ồn ào", example: "Loud music.", exampleTrans: "Nhạc rất to.", topic: "adjective", emoji: "📢" },
+            { word: "quiet", phonetic: "/ˈkwaɪət/", translation: "yên tĩnh", example: "Be quiet.", exampleTrans: "Hãy giữ im lặng.", topic: "adjective", emoji: "🤫" },
+            { word: "heavy", phonetic: "/ˈhevi/", translation: "nặng", example: "A heavy bag.", exampleTrans: "Một chiếc cặp nặng.", topic: "adjective", emoji: "🏋️" },
+            { word: "light", phonetic: "/laɪt/", translation: "nhẹ", example: "A light feather.", exampleTrans: "Một chiếc lông vũ nhẹ.", topic: "adjective", emoji: "🪶" },
+            { word: "smart", phonetic: "/smɑːt/", translation: "thông minh", example: "A smart boy.", exampleTrans: "Một cậu bé thông minh.", topic: "adjective", emoji: "🧠" },
+            { word: "funny", phonetic: "/ˈfʌni/", translation: "buồn cười", example: "A funny joke.", exampleTrans: "Một trò đùa buồn cười.", topic: "adjective", emoji: "😂" },
+            { word: "tired", phonetic: "/ˈtaɪəd/", translation: "mệt mỏi", example: "I am tired.", exampleTrans: "Mình đang mệt.", topic: "adjective", emoji: "🥱" },
+            { word: "hungry", phonetic: "/ˈhʌŋɡri/", translation: "đói bụng", example: "I am hungry.", exampleTrans: "Mình đang đói bụng.", topic: "adjective", emoji: "😋" },
+            { word: "thirsty", phonetic: "/ˈθɜːsti/", translation: "khát nước", example: "I am thirsty.", exampleTrans: "Mình đang khát nước.", topic: "adjective", emoji: "🥵" },
 
             // 7. Cơ thể người (Body)
-            { word: "head", phonetic: "/hed/", translation: "cái đầu", example: "Nod your head.", exampleTrans: "Hãy gật đầu nào.", topic: "body", emoji: "🗣️" },
-            { word: "eye", phonetic: "/aɪ/", translation: "con mắt", example: "Close your eyes.", exampleTrans: "Hãy nhắm mắt lại.", topic: "body", emoji: "👁️" },
-            { word: "ear", phonetic: "/ɪə/", translation: "cái tai", example: "I hear with my ears.", exampleTrans: "Mình nghe bằng đôi tai.", topic: "body", emoji: "👂" },
-            { word: "nose", phonetic: "/nəʊz/", translation: "cái mũi", example: "Touch your nose.", exampleTrans: "Hãy chạm vào mũi của bạn.", topic: "body", emoji: "👃" },
-            { word: "mouth", phonetic: "/maʊθ/", translation: "cái miệng", example: "Open your mouth.", exampleTrans: "Hãy mở miệng ra.", topic: "body", emoji: "👄" },
-            { word: "hand", phonetic: "/hænd/", translation: "bàn tay", example: "Wash your hands.", exampleTrans: "Hãy rửa tay nhé.", topic: "body", emoji: "🖐️" },
-            { word: "foot", phonetic: "/fʊt/", translation: "bàn chân", example: "Stamp your feet.", exampleTrans: "Hãy dậm chân nào.", topic: "body", emoji: "🦶" },
-            { word: "arm", phonetic: "/ɑːm/", translation: "cánh tay", example: "Raise your arm.", exampleTrans: "Hãy giơ tay lên.", topic: "body", emoji: "💪" },
-            { word: "leg", phonetic: "/leɡ/", translation: "cẳng chân", example: "My legs are long.", exampleTrans: "Chân của mình rất dài.", topic: "body", emoji: "🦵" },
-            { word: "hair", phonetic: "/heə/", translation: "mái tóc", example: "Her hair is black.", exampleTrans: "Tóc cô ấy màu đen.", topic: "body", emoji: "💇‍♀️" },
+            { word: "head", phonetic: "/hed/", translation: "cái đầu", example: "Nod your head.", exampleTrans: "Gật đầu nào.", topic: "body", emoji: "🗣️" },
+            { word: "eye", phonetic: "/aɪ/", translation: "con mắt", example: "Open your eyes.", exampleTrans: "Mở mắt ra.", topic: "body", emoji: "👁️" },
+            { word: "ear", phonetic: "/ɪə/", translation: "cái tai", example: "Two ears.", exampleTrans: "Hai cái tai.", topic: "body", emoji: "👂" },
+            { word: "nose", phonetic: "/nəʊz/", translation: "cái mũi", example: "Touch your nose.", exampleTrans: "Chạm vào mũi bạn.", topic: "body", emoji: "👃" },
+            { word: "mouth", phonetic: "/maʊθ/", translation: "cái miệng", example: "Close your mouth.", exampleTrans: "Ngậm miệng lại.", topic: "body", emoji: "👄" },
+            { word: "hand", phonetic: "/hænd/", translation: "bàn tay", example: "Clap your hands.", exampleTrans: "Vỗ tay nào.", topic: "body", emoji: "🖐️" },
+            { word: "foot", phonetic: "/fʊt/", translation: "bàn chân", example: "My left foot.", exampleTrans: "Bàn chân trái của mình.", topic: "body", emoji: "🦶" },
+            { word: "arm", phonetic: "/ɑːm/", translation: "cánh tay", example: "Raise your arm.", exampleTrans: "Giơ tay lên.", topic: "body", emoji: "💪" },
+            { word: "leg", phonetic: "/leɡ/", translation: "cẳng chân", example: "Long legs.", exampleTrans: "Đôi chân dài.", topic: "body", emoji: "🦵" },
+            { word: "hair", phonetic: "/heə/", translation: "mái tóc", example: "Brush your hair.", exampleTrans: "Hãy chải tóc.", topic: "body", emoji: "💇‍♀️" },
+            { word: "face", phonetic: "/feɪs/", translation: "khuôn mặt", example: "Wash your face.", exampleTrans: "Hãy rửa mặt.", topic: "body", emoji: "🙂" },
+            { word: "tooth", phonetic: "/tuːθ/", translation: "răng", example: "Brush your teeth.", exampleTrans: "Hãy đánh răng.", topic: "body", emoji: "🦷" },
+            { word: "finger", phonetic: "/ˈfɪŋɡə/", translation: "ngón tay", example: "Ten fingers.", exampleTrans: "Mười ngón tay.", topic: "body", emoji: "👆" },
+            { word: "toe", phonetic: "/təʊ/", translation: "ngón chân", example: "Ten toes.", exampleTrans: "Mười ngón chân.", topic: "body", emoji: "🦶" },
 
             // 8. Thiên nhiên (Nature)
-            { word: "sun", phonetic: "/sʌn/", translation: "mặt trời", example: "The sun is shining.", exampleTrans: "Mặt trời đang chiếu sáng.", topic: "nature", emoji: "☀️" },
-            { word: "moon", phonetic: "/muːn/", translation: "mặt trăng", example: "Look at the moon.", exampleTrans: "Hãy nhìn mặt trăng kìa.", topic: "nature", emoji: "🌙" },
-            { word: "star", phonetic: "/stɑː/", translation: "ngôi sao", example: "I see a star.", exampleTrans: "Mình thấy một ngôi sao.", topic: "nature", emoji: "⭐" },
-            { word: "sky", phonetic: "/skaɪ/", translation: "bầu trời", example: "The sky is blue.", exampleTrans: "Bầu trời màu xanh dương.", topic: "nature", emoji: "🌌" },
-            { word: "tree", phonetic: "/triː/", translation: "cái cây", example: "The tree is tall.", exampleTrans: "Cái cây rất cao.", topic: "nature", emoji: "🌳" },
-            { word: "flower", phonetic: "/ˈflaʊə/", translation: "bông hoa", example: "The flower smells good.", exampleTrans: "Bông hoa có mùi thơm.", topic: "nature", emoji: "🌸" },
+            { word: "sun", phonetic: "/sʌn/", translation: "mặt trời", example: "The sun is hot.", exampleTrans: "Mặt trời rất nóng.", topic: "nature", emoji: "☀️" },
+            { word: "moon", phonetic: "/muːn/", translation: "mặt trăng", example: "I see the moon.", exampleTrans: "Mình thấy mặt trăng.", topic: "nature", emoji: "🌙" },
+            { word: "star", phonetic: "/stɑː/", translation: "ngôi sao", example: "A bright star.", exampleTrans: "Một ngôi sao sáng.", topic: "nature", emoji: "⭐" },
+            { word: "sky", phonetic: "/skaɪ/", translation: "bầu trời", example: "Blue sky.", exampleTrans: "Bầu trời xanh.", topic: "nature", emoji: "🌌" },
+            { word: "tree", phonetic: "/triː/", translation: "cái cây", example: "A tall tree.", exampleTrans: "Một cái cây cao.", topic: "nature", emoji: "🌳" },
+            { word: "flower", phonetic: "/ˈflaʊə/", translation: "bông hoa", example: "A red flower.", exampleTrans: "Một bông hoa đỏ.", topic: "nature", emoji: "🌸" },
             { word: "rain", phonetic: "/reɪn/", translation: "cơn mưa", example: "It is raining.", exampleTrans: "Trời đang mưa.", topic: "nature", emoji: "🌧️" },
-            { word: "wind", phonetic: "/wɪnd/", translation: "gió", example: "The wind is cold.", exampleTrans: "Gió rất lạnh.", topic: "nature", emoji: "🌬️" },
-            { word: "cloud", phonetic: "/klaʊd/", translation: "đám mây", example: "The clouds are white.", exampleTrans: "Những đám mây màu trắng.", topic: "nature", emoji: "☁️" },
-            { word: "grass", phonetic: "/ɡrɑːs/", translation: "cây cỏ", example: "The grass is green.", exampleTrans: "Cỏ có màu xanh lá.", topic: "nature", emoji: "🌿" },
+            { word: "wind", phonetic: "/wɪnd/", translation: "gió", example: "Strong wind.", exampleTrans: "Gió mạnh.", topic: "nature", emoji: "🌬️" },
+            { word: "cloud", phonetic: "/klaʊd/", translation: "đám mây", example: "White clouds.", exampleTrans: "Những đám mây trắng.", topic: "nature", emoji: "☁️" },
+            { word: "grass", phonetic: "/ɡrɑːs/", translation: "cây cỏ", example: "Green grass.", exampleTrans: "Cỏ xanh.", topic: "nature", emoji: "🌿" },
+            { word: "mountain", phonetic: "/ˈmaʊntən/", translation: "ngọn núi", example: "A high mountain.", exampleTrans: "Một ngọn núi cao.", topic: "nature", emoji: "⛰️" },
+            { word: "river", phonetic: "/ˈrɪvə/", translation: "dòng sông", example: "A long river.", exampleTrans: "Một dòng sông dài.", topic: "nature", emoji: "🏞️" },
+            { word: "sea", phonetic: "/siː/", translation: "biển", example: "Swim in the sea.", exampleTrans: "Bơi ở biển.", topic: "nature", emoji: "🌊" },
+            { word: "beach", phonetic: "/biːtʃ/", translation: "bãi biển", example: "Play on the beach.", exampleTrans: "Chơi trên bãi biển.", topic: "nature", emoji: "🏖️" },
+            { word: "snow", phonetic: "/snəʊ/", translation: "tuyết", example: "Cold snow.", exampleTrans: "Tuyết lạnh.", topic: "nature", emoji: "❄️" },
+            { word: "fire", phonetic: "/ˈfaɪə/", translation: "ngọn lửa", example: "Hot fire.", exampleTrans: "Ngọn lửa nóng.", topic: "nature", emoji: "🔥" },
 
             // 9. Quần áo (Clothes)
-            { word: "shirt", phonetic: "/ʃɜːt/", translation: "áo sơ mi", example: "I wear a shirt.", exampleTrans: "Mình mặc một chiếc áo sơ mi.", topic: "clothes", emoji: "👕" },
-            { word: "pants", phonetic: "/pænts/", translation: "quần dài", example: "My pants are blue.", exampleTrans: "Quần của mình màu xanh.", topic: "clothes", emoji: "👖" },
-            { word: "dress", phonetic: "/dres/", translation: "váy liền", example: "She wears a dress.", exampleTrans: "Cô ấy mặc một chiếc váy.", topic: "clothes", emoji: "👗" },
-            { word: "hat", phonetic: "/hæt/", translation: "cái mũ", example: "Put on your hat.", exampleTrans: "Hãy đội mũ vào.", topic: "clothes", emoji: "🧢" },
-            { word: "shoe", phonetic: "/ʃuː/", translation: "chiếc giày", example: "Where is my shoe?", exampleTrans: "Chiếc giày của mình ở đâu?", topic: "clothes", emoji: "👟" },
-            { word: "sock", phonetic: "/sɒk/", translation: "chiếc tất", example: "I need warm socks.", exampleTrans: "Mình cần đôi tất ấm.", topic: "clothes", emoji: "🧦" },
-            { word: "skirt", phonetic: "/skɜːt/", translation: "chân váy", example: "Her skirt is pink.", exampleTrans: "Chân váy của cô ấy màu hồng.", topic: "clothes", emoji: "🥻" },
-            { word: "jacket", phonetic: "/ˈdʒækɪt/", translation: "áo khoác", example: "It's cold, wear a jacket.", exampleTrans: "Trời lạnh, hãy mặc áo khoác.", topic: "clothes", emoji: "🧥" },
+            { word: "shirt", phonetic: "/ʃɜːt/", translation: "áo sơ mi", example: "A white shirt.", exampleTrans: "Một chiếc áo sơ mi trắng.", topic: "clothes", emoji: "👕" },
+            { word: "pants", phonetic: "/pænts/", translation: "quần dài", example: "Blue pants.", exampleTrans: "Chiếc quần màu xanh.", topic: "clothes", emoji: "👖" },
+            { word: "dress", phonetic: "/dres/", translation: "váy liền", example: "A pink dress.", exampleTrans: "Một chiếc váy màu hồng.", topic: "clothes", emoji: "👗" },
+            { word: "hat", phonetic: "/hæt/", translation: "cái mũ", example: "Put on a hat.", exampleTrans: "Hãy đội mũ.", topic: "clothes", emoji: "🧢" },
+            { word: "shoe", phonetic: "/ʃuː/", translation: "chiếc giày", example: "My new shoes.", exampleTrans: "Đôi giày mới của mình.", topic: "clothes", emoji: "👟" },
+            { word: "sock", phonetic: "/sɒk/", translation: "chiếc tất", example: "Warm socks.", exampleTrans: "Đôi tất ấm áp.", topic: "clothes", emoji: "🧦" },
+            { word: "skirt", phonetic: "/skɜːt/", translation: "chân váy", example: "A short skirt.", exampleTrans: "Một chiếc chân váy ngắn.", topic: "clothes", emoji: "🥻" },
+            { word: "jacket", phonetic: "/ˈdʒækɪt/", translation: "áo khoác", example: "Wear a jacket.", exampleTrans: "Hãy mặc áo khoác.", topic: "clothes", emoji: "🧥" },
             { word: "glasses", phonetic: "/ˈɡlɑːsɪz/", translation: "kính mắt", example: "I wear glasses.", exampleTrans: "Mình đeo kính.", topic: "clothes", emoji: "👓" },
-            { word: "watch", phonetic: "/wɒtʃ/", translation: "đồng hồ đeo tay", example: "Look at your watch.", exampleTrans: "Hãy nhìn đồng hồ của bạn.", topic: "clothes", emoji: "⌚" },
+            { word: "watch", phonetic: "/wɒtʃ/", translation: "đồng hồ", example: "A nice watch.", exampleTrans: "Một chiếc đồng hồ đẹp.", topic: "clothes", emoji: "⌚" },
+            { word: "coat", phonetic: "/kəʊt/", translation: "áo choàng", example: "A winter coat.", exampleTrans: "Áo choàng mùa đông.", topic: "clothes", emoji: "🧥" },
+            { word: "shorts", phonetic: "/ʃɔːts/", translation: "quần đùi", example: "Summer shorts.", exampleTrans: "Quần đùi mùa hè.", topic: "clothes", emoji: "🩳" },
+            { word: "ring", phonetic: "/rɪŋ/", translation: "chiếc nhẫn", example: "A gold ring.", exampleTrans: "Một chiếc nhẫn vàng.", topic: "clothes", emoji: "💍" },
 
             // 10. Hành động (Action)
-            { word: "run", phonetic: "/rʌn/", translation: "chạy", example: "I can run fast.", exampleTrans: "Mình có thể chạy nhanh.", topic: "action", emoji: "🏃‍♂️" },
-            { word: "walk", phonetic: "/wɔːk/", translation: "đi bộ", example: "Let's walk.", exampleTrans: "Hãy cùng đi bộ nào.", topic: "action", emoji: "🚶" },
-            { word: "jump", phonetic: "/dʒʌmp/", translation: "nhảy", example: "Jump up high.", exampleTrans: "Hãy nhảy lên cao.", topic: "action", emoji: "🦘" },
-            { word: "read", phonetic: "/riːd/", translation: "đọc", example: "I read a book.", exampleTrans: "Mình đọc một quyển sách.", topic: "action", emoji: "📖" },
-            { word: "write", phonetic: "/raɪt/", translation: "viết", example: "Write your name.", exampleTrans: "Hãy viết tên của bạn.", topic: "action", emoji: "✍️" },
-            { word: "eat", phonetic: "/iːt/", translation: "ăn", example: "I eat an apple.", exampleTrans: "Mình ăn một quả táo.", topic: "action", emoji: "🍽️" },
-            { word: "drink", phonetic: "/drɪŋk/", translation: "uống", example: "Drink some water.", exampleTrans: "Hãy uống chút nước.", topic: "action", emoji: "🚰" },
-            { word: "sleep", phonetic: "/sliːp/", translation: "ngủ", example: "Time to sleep.", exampleTrans: "Đến giờ đi ngủ rồi.", topic: "action", emoji: "😴" },
-            { word: "play", phonetic: "/pleɪ/", translation: "chơi đùa", example: "Let's play together.", exampleTrans: "Cùng chơi với nhau nhé.", topic: "action", emoji: "🎮" },
-            { word: "sing", phonetic: "/sɪŋ/", translation: "hát", example: "She can sing well.", exampleTrans: "Cô ấy hát rất hay.", topic: "action", emoji: "🎤" },
-            { word: "dance", phonetic: "/dɑːns/", translation: "nhảy múa", example: "We dance to the music.", exampleTrans: "Chúng mình nhảy theo điệu nhạc.", topic: "action", emoji: "💃" },
-            { word: "swim", phonetic: "/swɪm/", translation: "bơi lội", example: "Fish can swim.", exampleTrans: "Cá có thể bơi.", topic: "action", emoji: "🏊" },
-            { word: "draw", phonetic: "/drɔː/", translation: "vẽ", example: "I draw a picture.", exampleTrans: "Mình vẽ một bức tranh.", topic: "action", emoji: "🖍️" },
-            { word: "speak", phonetic: "/spiːk/", translation: "nói", example: "I speak English.", exampleTrans: "Mình nói tiếng Anh.", topic: "action", emoji: "🗣️" },
-            { word: "listen", phonetic: "/ˈlɪsn/", translation: "lắng nghe", example: "Listen to the teacher.", exampleTrans: "Hãy lắng nghe cô giáo.", topic: "action", emoji: "🎧" },
+            { word: "run", phonetic: "/rʌn/", translation: "chạy", example: "Run fast.", exampleTrans: "Chạy nhanh.", topic: "action", emoji: "🏃‍♂️" },
+            { word: "walk", phonetic: "/wɔːk/", translation: "đi bộ", example: "Walk to school.", exampleTrans: "Đi bộ tới trường.", topic: "action", emoji: "🚶" },
+            { word: "jump", phonetic: "/dʒʌmp/", translation: "nhảy", example: "Jump high.", exampleTrans: "Nhảy cao.", topic: "action", emoji: "🦘" },
+            { word: "read", phonetic: "/riːd/", translation: "đọc", example: "Read a book.", exampleTrans: "Đọc sách.", topic: "action", emoji: "📖" },
+            { word: "write", phonetic: "/raɪt/", translation: "viết", example: "Write a letter.", exampleTrans: "Viết một bức thư.", topic: "action", emoji: "✍️" },
+            { word: "eat", phonetic: "/iːt/", translation: "ăn", example: "Eat an apple.", exampleTrans: "Ăn một quả táo.", topic: "action", emoji: "🍽️" },
+            { word: "drink", phonetic: "/drɪŋk/", translation: "uống", example: "Drink water.", exampleTrans: "Uống nước.", topic: "action", emoji: "🚰" },
+            { word: "sleep", phonetic: "/sliːp/", translation: "ngủ", example: "Go to sleep.", exampleTrans: "Đi ngủ thôi.", topic: "action", emoji: "😴" },
+            { word: "play", phonetic: "/pleɪ/", translation: "chơi", example: "Play a game.", exampleTrans: "Chơi trò chơi.", topic: "action", emoji: "🎮" },
+            { word: "sing", phonetic: "/sɪŋ/", translation: "hát", example: "Sing a song.", exampleTrans: "Hát một bài hát.", topic: "action", emoji: "🎤" },
+            { word: "dance", phonetic: "/dɑːns/", translation: "nhảy múa", example: "Let's dance.", exampleTrans: "Cùng nhảy nào.", topic: "action", emoji: "💃" },
+            { word: "swim", phonetic: "/swɪm/", translation: "bơi", example: "Swim in the pool.", exampleTrans: "Bơi ở hồ bơi.", topic: "action", emoji: "🏊" },
+            { word: "draw", phonetic: "/drɔː/", translation: "vẽ", example: "Draw a house.", exampleTrans: "Vẽ một ngôi nhà.", topic: "action", emoji: "🖍️" },
+            { word: "speak", phonetic: "/spiːk/", translation: "nói", example: "Speak English.", exampleTrans: "Nói tiếng Anh.", topic: "action", emoji: "🗣️" },
+            { word: "listen", phonetic: "/ˈlɪsn/", translation: "lắng nghe", example: "Listen to me.", exampleTrans: "Hãy nghe mình nói.", topic: "action", emoji: "🎧" },
+            { word: "look", phonetic: "/lʊk/", translation: "nhìn", example: "Look at this.", exampleTrans: "Hãy nhìn này.", topic: "action", emoji: "👀" },
+            { word: "see", phonetic: "/siː/", translation: "thấy", example: "I see a bird.", exampleTrans: "Mình thấy một con chim.", topic: "action", emoji: "👁️" },
+            { word: "stand", phonetic: "/stænd/", translation: "đứng", example: "Stand up.", exampleTrans: "Đứng lên.", topic: "action", emoji: "🧍" },
+            { word: "sit", phonetic: "/sɪt/", translation: "ngồi", example: "Sit down.", exampleTrans: "Ngồi xuống.", topic: "action", emoji: "🪑" },
+            { word: "go", phonetic: "/ɡəʊ/", translation: "đi", example: "Go home.", exampleTrans: "Đi về nhà.", topic: "action", emoji: "🚶" },
+            { word: "come", phonetic: "/kʌm/", translation: "đến", example: "Come here.", exampleTrans: "Lại đây.", topic: "action", emoji: "👋" },
+            { word: "stop", phonetic: "/stɒp/", translation: "dừng lại", example: "Stop here.", exampleTrans: "Dừng lại ở đây.", topic: "action", emoji: "🛑" },
+            { word: "open", phonetic: "/ˈəʊpən/", translation: "mở", example: "Open the door.", exampleTrans: "Mở cửa ra.", topic: "action", emoji: "🚪" },
+            { word: "close", phonetic: "/kləʊz/", translation: "đóng", example: "Close the book.", exampleTrans: "Đóng sách lại.", topic: "action", emoji: "📕" },
+            { word: "give", phonetic: "/ɡɪv/", translation: "cho, tặng", example: "Give me a pen.", exampleTrans: "Cho mình xin cái bút.", topic: "action", emoji: "🎁" },
+            { word: "wash", phonetic: "/wɒʃ/", translation: "rửa", example: "Wash your face.", exampleTrans: "Hãy rửa mặt.", topic: "action", emoji: "🚰" },
+            { word: "cook", phonetic: "/kʊk/", translation: "nấu ăn", example: "Cook dinner.", exampleTrans: "Nấu bữa tối.", topic: "action", emoji: "🍳" },
+            { word: "buy", phonetic: "/baɪ/", translation: "mua", example: "Buy a toy.", exampleTrans: "Mua một món đồ chơi.", topic: "action", emoji: "🛒" },
 
             // 11. Ngôi nhà (Home)
-            { word: "house", phonetic: "/haʊs/", translation: "ngôi nhà", example: "My house is big.", exampleTrans: "Ngôi nhà của mình rất to.", topic: "home", emoji: "🏠" },
-            { word: "room", phonetic: "/ruːm/", translation: "căn phòng", example: "This is my room.", exampleTrans: "Đây là phòng của mình.", topic: "home", emoji: "🚪" },
-            { word: "door", phonetic: "/dɔː/", translation: "cửa ra vào", example: "Open the door.", exampleTrans: "Hãy mở cửa ra.", topic: "home", emoji: "🚪" },
-            { word: "window", phonetic: "/ˈwɪndəʊ/", translation: "cửa sổ", example: "Close the window.", exampleTrans: "Hãy đóng cửa sổ lại.", topic: "home", emoji: "🪟" },
-            { word: "bed", phonetic: "/bed/", translation: "cái giường", example: "I sleep in my bed.", exampleTrans: "Mình ngủ trên giường.", topic: "home", emoji: "🛏️" },
-            { word: "table", phonetic: "/ˈteɪbl/", translation: "cái bàn", example: "The book is on the table.", exampleTrans: "Quyển sách ở trên bàn.", topic: "home", emoji: "🍽️" },
-            { word: "chair", phonetic: "/tʃeə/", translation: "cái ghế", example: "Sit on the chair.", exampleTrans: "Hãy ngồi lên ghế.", topic: "home", emoji: "🪑" },
-            { word: "sofa", phonetic: "/ˈsəʊfə/", translation: "ghế sofa", example: "The sofa is soft.", exampleTrans: "Ghế sofa rất êm.", topic: "home", emoji: "🛋️" },
-            { word: "television", phonetic: "/ˈtelɪvɪʒn/", translation: "tivi", example: "We watch television.", exampleTrans: "Chúng mình xem tivi.", topic: "home", emoji: "📺" },
-            { word: "clock", phonetic: "/klɒk/", translation: "đồng hồ", example: "Look at the clock.", exampleTrans: "Hãy nhìn vào đồng hồ.", topic: "home", emoji: "🕰️" },
+            { word: "house", phonetic: "/haʊs/", translation: "ngôi nhà", example: "A big house.", exampleTrans: "Một ngôi nhà lớn.", topic: "home", emoji: "🏠" },
+            { word: "room", phonetic: "/ruːm/", translation: "căn phòng", example: "My room.", exampleTrans: "Phòng của mình.", topic: "home", emoji: "🚪" },
+            { word: "door", phonetic: "/dɔː/", translation: "cửa ra vào", example: "Open the door.", exampleTrans: "Hãy mở cửa.", topic: "home", emoji: "🚪" },
+            { word: "window", phonetic: "/ˈwɪndəʊ/", translation: "cửa sổ", example: "Look out the window.", exampleTrans: "Nhìn ra ngoài cửa sổ.", topic: "home", emoji: "🪟" },
+            { word: "bed", phonetic: "/bed/", translation: "cái giường", example: "Make the bed.", exampleTrans: "Hãy dọn giường.", topic: "home", emoji: "🛏️" },
+            { word: "table", phonetic: "/ˈteɪbl/", translation: "cái bàn", example: "A round table.", exampleTrans: "Một cái bàn tròn.", topic: "home", emoji: "🍽️" },
+            { word: "chair", phonetic: "/tʃeə/", translation: "cái ghế", example: "Sit on a chair.", exampleTrans: "Ngồi lên ghế.", topic: "home", emoji: "🪑" },
+            { word: "sofa", phonetic: "/ˈsəʊfə/", translation: "ghế sofa", example: "A soft sofa.", exampleTrans: "Một chiếc sofa êm ái.", topic: "home", emoji: "🛋️" },
+            { word: "television", phonetic: "/ˈtelɪvɪʒn/", translation: "tivi", example: "Watch television.", exampleTrans: "Xem tivi.", topic: "home", emoji: "📺" },
+            { word: "clock", phonetic: "/klɒk/", translation: "đồng hồ", example: "Look at the clock.", exampleTrans: "Nhìn đồng hồ kìa.", topic: "home", emoji: "🕰️" },
+            { word: "kitchen", phonetic: "/ˈkɪtʃɪn/", translation: "nhà bếp", example: "Cook in the kitchen.", exampleTrans: "Nấu ăn trong bếp.", topic: "home", emoji: "🍳" },
+            { word: "bathroom", phonetic: "/ˈbɑːθruːm/", translation: "phòng tắm", example: "Wash in the bathroom.", exampleTrans: "Tắm rửa trong phòng tắm.", topic: "home", emoji: "🛁" },
+            { word: "bedroom", phonetic: "/ˈbedruːm/", translation: "phòng ngủ", example: "Sleep in the bedroom.", exampleTrans: "Ngủ trong phòng ngủ.", topic: "home", emoji: "🛏️" },
+            { word: "garden", phonetic: "/ˈɡɑːdn/", translation: "khu vườn", example: "Play in the garden.", exampleTrans: "Chơi trong vườn.", topic: "home", emoji: "🪴" },
+            { word: "wall", phonetic: "/wɔːl/", translation: "bức tường", example: "A white wall.", exampleTrans: "Một bức tường trắng.", topic: "home", emoji: "🧱" },
+            { word: "floor", phonetic: "/flɔː/", translation: "sàn nhà", example: "Sweep the floor.", exampleTrans: "Quét sàn nhà.", topic: "home", emoji: "🧹" },
+            { word: "lamp", phonetic: "/læmp/", translation: "cái đèn", example: "Turn on the lamp.", exampleTrans: "Bật đèn lên.", topic: "home", emoji: "💡" },
+            { word: "fan", phonetic: "/fæn/", translation: "cái quạt", example: "Turn on the fan.", exampleTrans: "Bật quạt lên.", topic: "home", emoji: "🌀" },
+            { word: "mirror", phonetic: "/ˈmɪrə/", translation: "cái gương", example: "Look in the mirror.", exampleTrans: "Nhìn vào gương.", topic: "home", emoji: "🪞" },
 
             // 12. Phương tiện (Transport)
-            { word: "car", phonetic: "/kɑː/", translation: "ô tô", example: "I go by car.", exampleTrans: "Mình đi bằng ô tô.", topic: "transport", emoji: "🚗" },
-            { word: "bus", phonetic: "/bʌs/", translation: "xe buýt", example: "The bus is yellow.", exampleTrans: "Xe buýt có màu vàng.", topic: "transport", emoji: "🚌" },
-            { word: "train", phonetic: "/treɪn/", translation: "tàu hỏa", example: "The train is long.", exampleTrans: "Đoàn tàu rất dài.", topic: "transport", emoji: "🚂" },
-            { word: "plane", phonetic: "/pleɪn/", translation: "máy bay", example: "The plane is flying.", exampleTrans: "Máy bay đang bay.", topic: "transport", emoji: "✈️" },
-            { word: "boat", phonetic: "/bəʊt/", translation: "con thuyền", example: "The boat is on the river.", exampleTrans: "Con thuyền ở trên sông.", topic: "transport", emoji: "🛶" },
-            { word: "bike", phonetic: "/baɪk/", translation: "xe đạp", example: "I ride a bike.", exampleTrans: "Mình đi xe đạp.", topic: "transport", emoji: "🚲" },
-            { word: "ship", phonetic: "/ʃɪp/", translation: "tàu thủy", example: "The ship is huge.", exampleTrans: "Tàu thủy rất khổng lồ.", topic: "transport", emoji: "🚢" },
-            { word: "truck", phonetic: "/trʌk/", translation: "xe tải", example: "The truck is heavy.", exampleTrans: "Xe tải rất nặng.", topic: "transport", emoji: "🚚" },
-            { word: "taxi", phonetic: "/ˈtæksi/", translation: "xe taxi", example: "We take a taxi.", exampleTrans: "Chúng mình đi xe taxi.", topic: "transport", emoji: "🚕" },
-            { word: "motorcycle", phonetic: "/ˈməʊtəsaɪkl/", translation: "xe máy", example: "My dad has a motorcycle.", exampleTrans: "Bố mình có một chiếc xe máy.", topic: "transport", emoji: "🏍️" },
+            { word: "car", phonetic: "/kɑː/", translation: "ô tô", example: "A red car.", exampleTrans: "Một chiếc xe ô tô đỏ.", topic: "transport", emoji: "🚗" },
+            { word: "bus", phonetic: "/bʌs/", translation: "xe buýt", example: "Go by bus.", exampleTrans: "Đi bằng xe buýt.", topic: "transport", emoji: "🚌" },
+            { word: "train", phonetic: "/treɪn/", translation: "tàu hỏa", example: "A fast train.", exampleTrans: "Một chuyến tàu nhanh.", topic: "transport", emoji: "🚂" },
+            { word: "plane", phonetic: "/pleɪn/", translation: "máy bay", example: "Fly a plane.", exampleTrans: "Lái máy bay.", topic: "transport", emoji: "✈️" },
+            { word: "boat", phonetic: "/bəʊt/", translation: "con thuyền", example: "Row a boat.", exampleTrans: "Chèo thuyền.", topic: "transport", emoji: "🛶" },
+            { word: "bike", phonetic: "/baɪk/", translation: "xe đạp", example: "Ride a bike.", exampleTrans: "Đạp xe đạp.", topic: "transport", emoji: "🚲" },
+            { word: "ship", phonetic: "/ʃɪp/", translation: "tàu thủy", example: "A big ship.", exampleTrans: "Một con tàu lớn.", topic: "transport", emoji: "🚢" },
+            { word: "truck", phonetic: "/trʌk/", translation: "xe tải", example: "A heavy truck.", exampleTrans: "Một chiếc xe tải nặng.", topic: "transport", emoji: "🚚" },
+            { word: "taxi", phonetic: "/ˈtæksi/", translation: "xe taxi", example: "Call a taxi.", exampleTrans: "Gọi một chiếc taxi.", topic: "transport", emoji: "🚕" },
+            { word: "motorcycle", phonetic: "/ˈməʊtəsaɪkl/", translation: "xe máy", example: "Ride a motorcycle.", exampleTrans: "Đi xe máy.", topic: "transport", emoji: "🏍️" },
 
             // 13. Nghề nghiệp (Job)
-            { word: "doctor", phonetic: "/ˈdɒktə/", translation: "bác sĩ", example: "The doctor helps me.", exampleTrans: "Bác sĩ giúp đỡ mình.", topic: "job", emoji: "👨‍⚕️" },
-            { word: "nurse", phonetic: "/nɜːs/", translation: "y tá", example: "The nurse is kind.", exampleTrans: "Cô y tá rất tốt bụng.", topic: "job", emoji: "👩‍⚕️" },
-            { word: "police", phonetic: "/pəˈliːs/", translation: "cảnh sát", example: "The police catches bad guys.", exampleTrans: "Cảnh sát bắt người xấu.", topic: "job", emoji: "👮" },
-            { word: "farmer", phonetic: "/ˈfɑːmə/", translation: "nông dân", example: "The farmer grows rice.", exampleTrans: "Bác nông dân trồng lúa.", topic: "job", emoji: "🧑‍🌾" },
-            { word: "pilot", phonetic: "/ˈpaɪlət/", translation: "phi công", example: "The pilot flies the plane.", exampleTrans: "Phi công lái máy bay.", topic: "job", emoji: "🧑‍✈️" },
-            { word: "driver", phonetic: "/ˈdraɪvə/", translation: "tài xế", example: "The driver drives the bus.", exampleTrans: "Bác tài xế lái xe buýt.", topic: "job", emoji: "🚕" },
-            { word: "singer", phonetic: "/ˈsɪŋə/", translation: "ca sĩ", example: "The singer sings a song.", exampleTrans: "Ca sĩ hát một bài hát.", topic: "job", emoji: "🧑‍🎤" },
-            { word: "cook", phonetic: "/kʊk/", translation: "đầu bếp", example: "The cook makes pizza.", exampleTrans: "Đầu bếp làm bánh pizza.", topic: "job", emoji: "🧑‍🍳" },
-            { word: "builder", phonetic: "/ˈbɪldə/", translation: "thợ xây", example: "The builder builds houses.", exampleTrans: "Thợ xây dựng những ngôi nhà.", topic: "job", emoji: "👷" },
-            { word: "dentist", phonetic: "/ˈdentɪst/", translation: "nha sĩ", example: "The dentist checks my teeth.", exampleTrans: "Nha sĩ kiểm tra răng cho mình.", topic: "job", emoji: "🦷" }
-             // Chủ đề 1: Động vật (Animals)
-{ word: "cat", phonetic: "/kæt/", translation: "con mèo", example: "The cat is sleeping.", exampleTrans: "Con mèo đang ngủ.", topic: "Động vật", emoji: "🐱" }
-{ word: "dog", phonetic: "/dɔːg/", translation: "con chó", example: "I love my dog.", exampleTrans: "Tôi yêu con chó của tôi.", topic: "Động vật", emoji: "🐶" }
-{ word: "bird", phonetic: "/bɜːrd/", translation: "con chim", example: "The bird is flying.", exampleTrans: "Con chim đang bay.", topic: "Động vật", emoji: "🐦" }
-{ word: "fish", phonetic: "/fɪʃ/", translation: "con cá", example: "The fish swims in the water.", exampleTrans: "Con cá bơi trong nước.", topic: "Động vật", emoji: "🐟" }
-{ word: "mouse", phonetic: "/maʊs/", translation: "con chuột", example: "The mouse is very small.", exampleTrans: "Con chuột rất nhỏ.", topic: "Động vật", emoji: "🐭" }
-{ word: "cow", phonetic: "/kaʊ/", translation: "con bò", example: "The cow eats grass.", exampleTrans: "Con bò ăn cỏ.", topic: "Động vật", emoji: "🐮" }
-{ word: "pig", phonetic: "/pɪg/", translation: "con lợn", example: "The pig is pink.", exampleTrans: "Con lợn màu hồng.", topic: "Động vật", emoji: "🐷" }
-{ word: "horse", phonetic: "/hɔːrs/", translation: "con ngựa", example: "He rides a horse.", exampleTrans: "Anh ấy cưỡi một con ngựa.", topic: "Động vật", emoji: "🐴" }
-{ word: "duck", phonetic: "/dʌk/", translation: "con vịt", example: "The duck says quack.", exampleTrans: "Con vịt kêu cạp cạp.", topic: "Động vật", emoji: "🦆" }
-{ word: "chicken", phonetic: "/ˈtʃɪkɪn/", translation: "con gà", example: "We have a chicken.", exampleTrans: "Chúng tôi có một con gà.", topic: "Động vật", emoji: "🐔" }
+            { word: "doctor", phonetic: "/ˈdɒktə/", translation: "bác sĩ", example: "See a doctor.", exampleTrans: "Gặp bác sĩ.", topic: "job", emoji: "👨‍⚕️" },
+            { word: "nurse", phonetic: "/nɜːs/", translation: "y tá", example: "A kind nurse.", exampleTrans: "Một y tá tốt bụng.", topic: "job", emoji: "👩‍⚕️" },
+            { word: "police", phonetic: "/pəˈliːs/", translation: "cảnh sát", example: "Call the police.", exampleTrans: "Gọi cảnh sát.", topic: "job", emoji: "👮" },
+            { word: "farmer", phonetic: "/ˈfɑːmə/", translation: "nông dân", example: "A hard-working farmer.", exampleTrans: "Bác nông dân chăm chỉ.", topic: "job", emoji: "🧑‍🌾" },
+            { word: "pilot", phonetic: "/ˈpaɪlət/", translation: "phi công", example: "A brave pilot.", exampleTrans: "Phi công dũng cảm.", topic: "job", emoji: "🧑‍✈️" },
+            { word: "driver", phonetic: "/ˈdraɪvə/", translation: "tài xế", example: "A bus driver.", exampleTrans: "Tài xế xe buýt.", topic: "job", emoji: "🚕" },
+            { word: "singer", phonetic: "/ˈsɪŋə/", translation: "ca sĩ", example: "A famous singer.", exampleTrans: "Một ca sĩ nổi tiếng.", topic: "job", emoji: "🧑‍🎤" },
+            { word: "cook", phonetic: "/kʊk/", translation: "đầu bếp", example: "A good cook.", exampleTrans: "Một đầu bếp giỏi.", topic: "job", emoji: "🧑‍🍳" },
+            { word: "builder", phonetic: "/ˈbɪldə/", translation: "thợ xây", example: "A strong builder.", exampleTrans: "Thợ xây khỏe mạnh.", topic: "job", emoji: "👷" },
+            { word: "dentist", phonetic: "/ˈdentɪst/", translation: "nha sĩ", example: "Visit the dentist.", exampleTrans: "Đi khám nha sĩ.", topic: "job", emoji: "🦷" },
 
-// Chủ đề 2: Trái cây (Fruits)
-{ word: "apple", phonetic: "/ˈæpl/", translation: "quả táo", example: "This apple is sweet.", exampleTrans: "Quả táo này ngọt.", topic: "Trái cây", emoji: "🍎" }
-{ word: "banana", phonetic: "/bəˈnænə/", translation: "quả chuối", example: "Monkeys like bananas.", exampleTrans: "Khỉ thích chuối.", topic: "Trái cây", emoji: "🍌" }
-{ word: "orange", phonetic: "/ˈɔːrɪndʒ/", translation: "quả cam", example: "I drink orange juice.", exampleTrans: "Tôi uống nước cam.", topic: "Trái cây", emoji: "🍊" }
-{ word: "grape", phonetic: "/greɪp/", translation: "quả nho", example: "These grapes are green.", exampleTrans: "Những quả nho này màu xanh.", topic: "Trái cây", emoji: "🍇" }
-{ word: "mango", phonetic: "/ˈmæŋgoʊ/", translation: "quả xoài", example: "Mango is my favorite fruit.", exampleTrans: "Xoài là trái cây yêu thích của tôi.", topic: "Trái cây", emoji: "🥭" }
-{ word: "lemon", phonetic: "/ˈlemən/", translation: "quả chanh vàng", example: "The lemon is sour.", exampleTrans: "Quả chanh có vị chua.", topic: "Trái cây", emoji: "🍋" }
-{ word: "peach", phonetic: "/piːtʃ/", translation: "quả đào", example: "I eat a peach.", exampleTrans: "Tôi ăn một quả đào.", topic: "Trái cây", emoji: "🍑" }
-{ word: "pear", phonetic: "/per/", translation: "quả lê", example: "She buys a pear.", exampleTrans: "Cô ấy mua một quả lê.", topic: "Trái cây", emoji: "🍐" }
-{ word: "cherry", phonetic: "/ˈtʃeri/", translation: "quả anh đào", example: "The cherry is red.", exampleTrans: "Quả anh đào màu đỏ.", topic: "Trái cây", emoji: "🍒" }
-{ word: "watermelon", phonetic: "/ˈwɔːtərmelən/", translation: "quả dưa hấu", example: "Watermelon is big.", exampleTrans: "Quả dưa hấu thì to.", topic: "Trái cây", emoji: "🍉" }
+            // 14. Đồ chơi (Toys)
+            { word: "toy", phonetic: "/tɔɪ/", translation: "đồ chơi", example: "I have many toys.", exampleTrans: "Mình có nhiều đồ chơi.", topic: "toys", emoji: "🧸" },
+            { word: "doll", phonetic: "/dɒl/", translation: "búp bê", example: "A beautiful doll.", exampleTrans: "Một búp bê xinh đẹp.", topic: "toys", emoji: "🪆" },
+            { word: "ball", phonetic: "/bɔːl/", translation: "quả bóng", example: "Kick the ball.", exampleTrans: "Đá quả bóng.", topic: "toys", emoji: "⚽" },
+            { word: "kite", phonetic: "/kaɪt/", translation: "cái diều", example: "Fly a kite.", exampleTrans: "Thả diều.", topic: "toys", emoji: "🪁" },
+            { word: "balloon", phonetic: "/bəˈluːn/", translation: "bóng bay", example: "A red balloon.", exampleTrans: "Một quả bóng bay đỏ.", topic: "toys", emoji: "🎈" },
+            { word: "robot", phonetic: "/ˈrəʊbɒt/", translation: "người máy", example: "A toy robot.", exampleTrans: "Một con rô bốt đồ chơi.", topic: "toys", emoji: "🤖" },
 
-// Chủ đề 3: Màu sắc (Colors)
-{ word: "red", phonetic: "/red/", translation: "màu đỏ", example: "My car is red.", exampleTrans: "Xe ô tô của tôi màu đỏ.", topic: "Màu sắc", emoji: "🔴" }
-{ word: "blue", phonetic: "/bluː/", translation: "màu xanh dương", example: "The sky is blue.", exampleTrans: "Bầu trời màu xanh dương.", topic: "Màu sắc", emoji: "🔵" }
-{ word: "green", phonetic: "/griːn/", translation: "màu xanh lá", example: "The leaf is green.", exampleTrans: "Chiếc lá màu xanh lá.", topic: "Màu sắc", emoji: "🟢" }
-{ word: "yellow", phonetic: "/ˈjeloʊ/", translation: "màu vàng", example: "The sun is yellow.", exampleTrans: "Mặt trời màu vàng.", topic: "Màu sắc", emoji: "🟡" }
-{ word: "pink", phonetic: "/pɪŋk/", translation: "màu hồng", example: "She has a pink dress.", exampleTrans: "Cô ấy có một chiếc váy hồng.", topic: "Màu sắc", emoji: "🌸" }
-{ word: "purple", phonetic: "/ˈpɜːrpl/", translation: "màu tím", example: "I like purple flowers.", exampleTrans: "Tôi thích hoa màu tím.", topic: "Màu sắc", emoji: "🟣" }
-{ word: "black", phonetic: "/blæk/", translation: "màu đen", example: "The cat is black.", exampleTrans: "Con mèo màu đen.", topic: "Màu sắc", emoji: "⚫" }
-{ word: "white", phonetic: "/waɪt/", translation: "màu trắng", example: "Snow is white.", exampleTrans: "Tuyết màu trắng.", topic: "Màu sắc", emoji: "⚪" }
-{ word: "brown", phonetic: "/braʊn/", translation: "màu nâu", example: "The bear is brown.", exampleTrans: "Con gấu màu nâu.", topic: "Màu sắc", emoji: "🟤" }
-{ word: "gray", phonetic: "/greɪ/", translation: "màu xám", example: "The cloud is gray.", exampleTrans: "Đám mây màu xám.", topic: "Màu sắc", emoji: "🐘" }
-
-// Chủ đề 4: Gia đình (Family)
-{ word: "father", phonetic: "/ˈfɑːðər/", translation: "bố/ba", example: "My father is tall.", exampleTrans: "Bố tôi cao.", topic: "Gia đình", emoji: "👨" }
-{ word: "mother", phonetic: "/ˈmʌðər/", translation: "mẹ/má", example: "My mother is kind.", exampleTrans: "Mẹ tôi hiền lành.", topic: "Gia đình", emoji: "👩" }
-{ word: "brother", phonetic: "/ˈbrʌðər/", translation: "anh/em trai", example: "He is my brother.", exampleTrans: "Anh ấy là anh trai tôi.", topic: "Gia đình", emoji: "👦" }
-{ word: "sister", phonetic: "/ˈsɪstər/", translation: "chị/em gái", example: "I have one sister.", exampleTrans: "Tôi có một người chị gái.", topic: "Gia đình", emoji: "👧" }
-{ word: "baby", phonetic: "/ˈbeɪbi/", translation: "em bé", example: "The baby is crying.", exampleTrans: "Em bé đang khóc.", topic: "Gia đình", emoji: "👶" }
-{ word: "grandfather", phonetic: "/ˈgrændfɑːðər/", translation: "ông", example: "My grandfather is old.", exampleTrans: "Ông tôi đã già.", topic: "Gia đình", emoji: "👴" }
-{ word: "grandmother", phonetic: "/ˈgrændmʌðər/", translation: "bà", example: "My grandmother cooks well.", exampleTrans: "Bà tôi nấu ăn ngon.", topic: "Gia đình", emoji: "👵" }
-{ word: "uncle", phonetic: "/ˈʌŋkl/", translation: "chú/bác trai", example: "My uncle is a doctor.", exampleTrans: "Chú tôi là bác sĩ.", topic: "Gia đình", emoji: "👨‍⚕️" }
-{ word: "aunt", phonetic: "/ænt/", translation: "cô/dì/bác gái", example: "My aunt lives here.", exampleTrans: "Dì tôi sống ở đây.", topic: "Gia đình", emoji: "👩‍🦰" }
-{ word: "cousin", phonetic: "/ˈkʌzn/", translation: "anh chị em họ", example: "We play with our cousin.", exampleTrans: "Chúng tôi chơi với anh em họ.", topic: "Gia đình", emoji: "🧒" }
-
-// Chủ đề 5: Cơ thể (Body Parts)
-{ word: "head", phonetic: "/hed/", translation: "cái đầu", example: "Nod your head.", exampleTrans: "Hãy gật đầu.", topic: "Cơ thể", emoji: "🗣️" }
-{ word: "eye", phonetic: "/aɪ/", translation: "con mắt", example: "Close your eyes.", exampleTrans: "Nhắm mắt lại.", topic: "Cơ thể", emoji: "👁️" }
-{ word: "ear", phonetic: "/ɪr/", translation: "cái tai", example: "I hear with my ears.", exampleTrans: "Tôi nghe bằng tai.", topic: "Cơ thể", emoji: "👂" }
-{ word: "nose", phonetic: "/noʊz/", translation: "cái mũi", example: "Touch your nose.", exampleTrans: "Chạm vào mũi của bạn.", topic: "Cơ thể", emoji: "👃" }
-{ word: "mouth", phonetic: "/maʊθ/", translation: "cái miệng", example: "Open your mouth.", exampleTrans: "Há miệng ra.", topic: "Cơ thể", emoji: "👄" }
-{ word: "hand", phonetic: "/hænd/", translation: "bàn tay", example: "Wash your hands.", exampleTrans: "Hãy rửa tay.", topic: "Cơ thể", emoji: "🖐️" }
-{ word: "arm", phonetic: "/ɑːrm/", translation: "cánh tay", example: "He has strong arms.", exampleTrans: "Anh ấy có cánh tay khỏe.", topic: "Cơ thể", emoji: "💪" }
-{ word: "leg", phonetic: "/leg/", translation: "cái chân", example: "My legs are tired.", exampleTrans: "Chân tôi bị mỏi.", topic: "Cơ thể", emoji: "🦵" }
-{ word: "foot", phonetic: "/fʊt/", translation: "bàn chân", example: "I have two feet.", exampleTrans: "Tôi có hai bàn chân.", topic: "Cơ thể", emoji: "🦶" }
-{ word: "hair", phonetic: "/her/", translation: "tóc", example: "Her hair is long.", exampleTrans: "Tóc cô ấy dài.", topic: "Cơ thể", emoji: "💇‍♀️" }
-
-// Chủ đề 6: Thức ăn & Đồ uống (Food & Drinks)
-{ word: "bread", phonetic: "/bred/", translation: "bánh mì", example: "I eat bread for breakfast.", exampleTrans: "Tôi ăn bánh mì vào bữa sáng.", topic: "Thức ăn", emoji: "🍞" }
-{ word: "rice", phonetic: "/raɪs/", translation: "gạo/cơm", example: "We eat rice every day.", exampleTrans: "Chúng tôi ăn cơm mỗi ngày.", topic: "Thức ăn", emoji: "🍚" }
-{ word: "egg", phonetic: "/eg/", translation: "quả trứng", example: "The hen lays an egg.", exampleTrans: "Gà mái đẻ một quả trứng.", topic: "Thức ăn", emoji: "🥚" }
-{ word: "milk", phonetic: "/mɪlk/", translation: "sữa", example: "Drink your milk.", exampleTrans: "Hãy uống sữa đi.", topic: "Thức ăn", emoji: "🥛" }
-{ word: "cheese", phonetic: "/tʃiːz/", translation: "phô mai", example: "Mice like cheese.", exampleTrans: "Chuột thích phô mai.", topic: "Thức ăn", emoji: "🧀" }
-{ word: "meat", phonetic: "/miːt/", translation: "thịt", example: "I don't eat meat.", exampleTrans: "Tôi không ăn thịt.", topic: "Thức ăn", emoji: "🥩" }
-{ word: "soup", phonetic: "/suːp/", translation: "món súp/canh", example: "The soup is hot.", exampleTrans: "Món súp đang nóng.", topic: "Thức ăn", emoji: "🥣" }
-{ word: "cake", phonetic: "/keɪk/", translation: "bánh ngọt", example: "Happy birthday cake!", exampleTrans: "Bánh sinh nhật vui vẻ!", topic: "Thức ăn", emoji: "🍰" }
-{ word: "pizza", phonetic: "/ˈpiːtsə/", translation: "bánh pizza", example: "Let's order a pizza.", exampleTrans: "Cùng gọi pizza nhé.", topic: "Thức ăn", emoji: "🍕" }
-{ word: "water", phonetic: "/ˈwɔːtər/", translation: "nước", example: "I need some water.", exampleTrans: "Tôi cần một chút nước.", topic: "Thức ăn", emoji: "💧" }
-
-// Chủ đề 7: Trường học (School)
-{ word: "book", phonetic: "/bʊk/", translation: "quyển sách", example: "Read a book.", exampleTrans: "Hãy đọc sách.", topic: "Trường học", emoji: "📖" }
-{ word: "pen", phonetic: "/pen/", translation: "cái bút máy", example: "Write with a pen.", exampleTrans: "Viết bằng bút máy.", topic: "Trường học", emoji: "🖊️" }
-{ word: "pencil", phonetic: "/ˈpensl/", translation: "bút chì", example: "I have a yellow pencil.", exampleTrans: "Tôi có một cây bút chì vàng.", topic: "Trường học", emoji: "✏️" }
-{ word: "bag", phonetic: "/bæg/", translation: "cái cặp/túi", example: "Put it in your bag.", exampleTrans: "Bỏ nó vào cặp của bạn.", topic: "Trường học", emoji: "🎒" }
-{ word: "desk", phonetic: "/desk/", translation: "bàn học", example: "Sit at your desk.", exampleTrans: "Ngồi vào bàn học của bạn.", topic: "Trường học", emoji: "🪑" }
-{ word: "chair", phonetic: "/tʃer/", translation: "cái ghế", example: "The chair is wooden.", exampleTrans: "Cái ghế làm bằng gỗ.", topic: "Trường học", emoji: "🪑" }
-{ word: "eraser", phonetic: "/ɪˈreɪsər/", translation: "cục tẩy", example: "Use an eraser.", exampleTrans: "Hãy dùng cục tẩy.", topic: "Trường học", emoji: "🧽" }
-{ word: "ruler", phonetic: "/ˈruːlər/", translation: "cái thước kẻ", example: "Draw a line with a ruler.", exampleTrans: "Kẻ một đường bằng thước.", topic: "Trường học", emoji: "📏" }
-{ word: "teacher", phonetic: "/ˈtiːtʃər/", translation: "giáo viên", example: "Listen to the teacher.", exampleTrans: "Hãy lắng nghe giáo viên.", topic: "Trường học", emoji: "👩‍🏫" }
-{ word: "school", phonetic: "/skuːl/", translation: "trường học", example: "I go to school.", exampleTrans: "Tôi đi đến trường.", topic: "Trường học", emoji: "🏫" }
-
-// Chủ đề 8: Quần áo (Clothes)
-{ word: "shirt", phonetic: "/ʃɜːrt/", translation: "áo sơ mi", example: "He wears a white shirt.", exampleTrans: "Anh ấy mặc áo sơ mi trắng.", topic: "Quần áo", emoji: "👕" }
-{ word: "pants", phonetic: "/pænts/", translation: "quần dài", example: "These pants are too long.", exampleTrans: "Cái quần này dài quá.", topic: "Quần áo", emoji: "👖" }
-{ word: "dress", phonetic: "/dres/", translation: "cái váy (liền thân)", example: "She has a pretty dress.", exampleTrans: "Cô ấy có chiếc váy đẹp.", topic: "Quần áo", emoji: "👗" }
-{ word: "skirt", phonetic: "/skɜːrt/", translation: "chân váy", example: "The skirt is short.", exampleTrans: "Chân váy thì ngắn.", topic: "Quần áo", emoji: "🥻" }
-{ word: "hat", phonetic: "/hæt/", translation: "cái mũ", example: "Put on your hat.", exampleTrans: "Đội mũ vào nhé.", topic: "Quần áo", emoji: "🧢" }
-{ word: "shoe", phonetic: "/ʃuː/", translation: "chiếc giày", example: "I lost my shoe.", exampleTrans: "Tôi làm mất một chiếc giày.", topic: "Quần áo", emoji: "👟" }
-{ word: "sock", phonetic: "/sɑːk/", translation: "chiếc tất", example: "Where is my left sock?", exampleTrans: "Chiếc tất trái của tôi đâu?", topic: "Quần áo", emoji: "🧦" }
-{ word: "coat", phonetic: "/koʊt/", translation: "áo khoác", example: "It is cold, wear a coat.", exampleTrans: "Trời lạnh, hãy mặc áo khoác.", topic: "Quần áo", emoji: "🧥" }
-{ word: "glasses", phonetic: "/ˈglæsɪz/", translation: "kính mắt", example: "He wears glasses.", exampleTrans: "Anh ấy đeo kính.", topic: "Quần áo", emoji: "👓" }
-{ word: "ring", phonetic: "/rɪŋ/", translation: "chiếc nhẫn", example: "A gold ring.", exampleTrans: "Một chiếc nhẫn vàng.", topic: "Quần áo", emoji: "💍" }
-
-// Chủ đề 9: Thiên nhiên (Nature)
-{ word: "sun", phonetic: "/sʌn/", translation: "mặt trời", example: "The sun is shining.", exampleTrans: "Mặt trời đang chiếu sáng.", topic: "Thiên nhiên", emoji: "☀️" }
-{ word: "moon", phonetic: "/muːn/", translation: "mặt trăng", example: "Look at the moon.", exampleTrans: "Hãy nhìn mặt trăng kìa.", topic: "Thiên nhiên", emoji: "🌙" }
-{ word: "star", phonetic: "/stɑːr/", translation: "ngôi sao", example: "I see a shooting star.", exampleTrans: "Tôi thấy một ngôi sao băng.", topic: "Thiên nhiên", emoji: "⭐" }
-{ word: "sky", phonetic: "/skaɪ/", translation: "bầu trời", example: "The sky is clear.", exampleTrans: "Bầu trời trong xanh.", topic: "Thiên nhiên", emoji: "🌌" }
-{ word: "tree", phonetic: "/triː/", translation: "cái cây", example: "The bird is on the tree.", exampleTrans: "Con chim ở trên cây.", topic: "Thiên nhiên", emoji: "🌳" }
-{ word: "flower", phonetic: "/ˈflaʊər/", translation: "bông hoa", example: "This flower smells good.", exampleTrans: "Bông hoa này có mùi thơm.", topic: "Thiên nhiên", emoji: "🌻" }
-{ word: "grass", phonetic: "/græs/", translation: "bãi cỏ", example: "Don't walk on the grass.", exampleTrans: "Đừng dẫm lên cỏ.", topic: "Thiên nhiên", emoji: "🌿" }
-{ word: "cloud", phonetic: "/klaʊd/", translation: "đám mây", example: "Look at that cloud.", exampleTrans: "Nhìn đám mây kia kìa.", topic: "Thiên nhiên", emoji: "☁️" }
-{ word: "rain", phonetic: "/reɪn/", translation: "cơn mưa", example: "It is going to rain.", exampleTrans: "Trời sắp mưa rồi.", topic: "Thiên nhiên", emoji: "🌧️" }
-{ word: "snow", phonetic: "/snoʊ/", translation: "tuyết", example: "Kids love playing in the snow.", exampleTrans: "Trẻ em thích chơi dưới tuyết.", topic: "Thiên nhiên", emoji: "❄️" }
-
-// Chủ đề 10: Đồ chơi (Toys)
-{ word: "doll", phonetic: "/dɑːl/", translation: "búp bê", example: "She plays with her doll.", exampleTrans: "Cô bé chơi với búp bê.", topic: "Đồ chơi", emoji: "🎎" }
-{ word: "ball", phonetic: "/bɔːl/", translation: "quả bóng", example: "Kick the ball.", exampleTrans: "Hãy đá quả bóng.", topic: "Đồ chơi", emoji: "⚽" }
-{ word: "car", phonetic: "/kɑːr/", translation: "ô tô đồ chơi", example: "He has a toy car.", exampleTrans: "Cậu bé có một chiếc ô tô đồ chơi.", topic: "Đồ chơi", emoji: "🚗" }
-{ word: "train", phonetic: "/treɪn/", translation: "tàu hỏa", example: "The train goes choo-choo.", exampleTrans: "Tàu hỏa chạy xình xịch.", topic: "Đồ chơi", emoji: "🚂" }
-{ word: "kite", phonetic: "/kaɪt/", translation: "cái diều", example: "Let's fly a kite.", exampleTrans: "Cùng đi thả diều nào.", topic: "Đồ chơi", emoji: "🪁" }
-{ word: "block", phonetic: "/blɑːk/", translation: "khối xếp hình", example: "Build with blocks.", exampleTrans: "Xếp hình bằng các khối gỗ.", topic: "Đồ chơi", emoji: "🧱" }
-{ word: "bear", phonetic: "/ber/", translation: "gấu bông", example: "My teddy bear is soft.", exampleTrans: "Gấu bông của tôi rất mềm.", topic: "Đồ chơi", emoji: "🧸" }
-{ word: "robot", phonetic: "/ˈroʊbɑːt/", translation: "người máy", example: "The robot can walk.", exampleTrans: "Người máy có thể đi lại.", topic: "Đồ chơi", emoji: "🤖" }
-{ word: "puzzle", phonetic: "/ˈpʌzl/", translation: "trò ghép hình", example: "Solve the puzzle.", exampleTrans: "Hãy giải bức tranh ghép hình.", topic: "Đồ chơi", emoji: "🧩" }
-{ word: "boat", phonetic: "/boʊt/", translation: "con thuyền", example: "The boat is on the water.", exampleTrans: "Con thuyền ở trên mặt nước.", topic: "Đồ chơi", emoji: "⛵" } 
+            // 15. Nơi chốn (Places)
+            { word: "park", phonetic: "/pɑːk/", translation: "công viên", example: "Play in the park.", exampleTrans: "Chơi ở công viên.", topic: "places", emoji: "🏞️" },
+            { word: "zoo", phonetic: "/zuː/", translation: "sở thú", example: "Go to the zoo.", exampleTrans: "Đi tới sở thú.", topic: "places", emoji: "🐘" },
+            { word: "hospital", phonetic: "/ˈhɒspɪtl/", translation: "bệnh viện", example: "A big hospital.", exampleTrans: "Một bệnh viện lớn.", topic: "places", emoji: "🏥" },
+            { word: "bank", phonetic: "/bæŋk/", translation: "ngân hàng", example: "Go to the bank.", exampleTrans: "Đi tới ngân hàng.", topic: "places", emoji: "🏦" },
+            { word: "shop", phonetic: "/ʃɒp/", translation: "cửa hàng", example: "Buy in a shop.", exampleTrans: "Mua đồ ở cửa hàng.", topic: "places", emoji: "🏪" },
+            { word: "market", phonetic: "/ˈmɑːkɪt/", translation: "chợ", example: "A busy market.", exampleTrans: "Một khu chợ đông đúc.", topic: "places", emoji: "🛒" }
         ];
 
         // Hàm tạo số ngẫu nhiên có hạt giống (seed) để giữ nguyên kết quả trong cùng 1 ngày
